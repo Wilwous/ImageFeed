@@ -4,8 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,7 +19,46 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tJl-p4-Qts">
                                 <rect key="frame" x="0.0" y="50" width="375" height="762"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="YP Black"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImagesListCell" rowHeight="224" id="NMX-33-Uab">
+                                        <rect key="frame" x="0.0" y="55.333332061767578" width="375" height="224"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NMX-33-Uab" id="Xtx-Yh-JWv">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="224"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="POI-uM-MFV" userLabel="Cell Images">
+                                                    <rect key="frame" x="16" y="4" width="343" height="216"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHz-Fz-08G" userLabel="Like Button">
+                                                    <rect key="frame" x="317" y="4" width="42" height="42"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" image="like_button_on"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 июня 1995" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6V-h3-ufj" userLabel="Date Label">
+                                                    <rect key="frame" x="32" y="196.33333333333334" width="86" height="15.666666666666657"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" name="YP White"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" name="YP Black"/>
+                                            <constraints>
+                                                <constraint firstItem="o6V-h3-ufj" firstAttribute="leading" secondItem="POI-uM-MFV" secondAttribute="leading" constant="16" id="HGo-X6-qjM"/>
+                                                <constraint firstItem="POI-uM-MFV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="o6V-h3-ufj" secondAttribute="trailing" constant="8" id="HNt-O1-sG2"/>
+                                                <constraint firstItem="POI-uM-MFV" firstAttribute="top" secondItem="YHz-Fz-08G" secondAttribute="top" id="LYs-VN-hz6"/>
+                                                <constraint firstItem="POI-uM-MFV" firstAttribute="trailing" secondItem="YHz-Fz-08G" secondAttribute="trailing" id="PCj-j9-RFi"/>
+                                                <constraint firstItem="POI-uM-MFV" firstAttribute="top" secondItem="Xtx-Yh-JWv" secondAttribute="top" constant="4" id="RpU-xP-Rj0"/>
+                                                <constraint firstAttribute="trailing" secondItem="POI-uM-MFV" secondAttribute="trailing" constant="16" id="ahw-s7-YJK"/>
+                                                <constraint firstItem="POI-uM-MFV" firstAttribute="leading" secondItem="Xtx-Yh-JWv" secondAttribute="leading" constant="16" id="axn-zr-MN8"/>
+                                                <constraint firstItem="POI-uM-MFV" firstAttribute="bottom" secondItem="o6V-h3-ufj" secondAttribute="bottom" constant="8" id="er4-K4-Ubx"/>
+                                                <constraint firstAttribute="bottom" secondItem="POI-uM-MFV" secondAttribute="bottom" constant="4" id="iKu-hU-0dF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="YP Black"/>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="WDq-Eb-0e0"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="vRe-C4-97S"/>
@@ -27,7 +66,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="YP Black"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="tJl-p4-Qts" secondAttribute="bottom" id="8he-hb-SdT"/>
                             <constraint firstItem="tJl-p4-Qts" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="THK-Ei-6DO"/>
@@ -41,12 +80,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="58" y="-2"/>
+            <point key="canvasLocation" x="56.799999999999997" y="-2.2167487684729066"/>
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="0" width="200" height="132"/>
+        <image name="like_button_on" width="42" height="42"/>
+        <namedColor name="YP Black">
+            <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="YP White">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

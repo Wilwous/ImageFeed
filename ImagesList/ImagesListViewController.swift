@@ -14,6 +14,8 @@ class ImagesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    func configCell(for cell:ImagesListCell) {}
 }
 
     extension ImagesListViewController: UITableViewDelegate {
