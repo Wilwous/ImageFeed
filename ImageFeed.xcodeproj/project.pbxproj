@@ -82,7 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				7C5146542A7400D600DB47F7 /* ImageFeed */,
-				7CB7ABEB2A7A80F500034C16 /* ImagesList */,
 				7C51466B2A7400D800DB47F7 /* ImageFeedTests */,
 				7C5146752A7400D800DB47F7 /* ImageFeedUITests */,
 				7C5146532A7400D600DB47F7 /* Products */,
@@ -102,11 +101,12 @@
 		7C5146542A7400D600DB47F7 /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
+				7C5146552A7400D600DB47F7 /* AppDelegate.swift */,
+				7C5146572A7400D600DB47F7 /* SceneDelegate.swift */,
+				7CB7ABEB2A7A80F500034C16 /* ImagesList */,
 				7C51465B2A7400D600DB47F7 /* Main.storyboard */,
 				7C5146602A7400D700DB47F7 /* LaunchScreen.storyboard */,
 				7C51465E2A7400D700DB47F7 /* Assets.xcassets */,
-				7C5146572A7400D600DB47F7 /* SceneDelegate.swift */,
-				7C5146552A7400D600DB47F7 /* AppDelegate.swift */,
 				7C5146632A7400D700DB47F7 /* Info.plist */,
 			);
 			path = ImageFeed;

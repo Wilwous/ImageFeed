@@ -15,7 +15,7 @@ class ImagesListViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    func configCell(for cell:ImagesListCell) {}
+    func configCell(for cell:ImagesListCell, with: IndexPath) {}
 }
 
     extension ImagesListViewController: UITableViewDelegate {
@@ -30,7 +30,15 @@ class ImagesListViewController: UIViewController {
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
+
+            guard let imageListCell = cell as? ImagesListCell else {
+                return UITableViewCell()
+            }
+
+            configCell(for: imageListCell, with: indexPath)
+
+            return imageListCell
         }
     }
 
