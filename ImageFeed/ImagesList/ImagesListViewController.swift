@@ -13,7 +13,10 @@ class ImagesListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        TableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
     }
+    
+    private let photosName: [String] = Array(0..<20).map{ "\($0)" }
     
     func configCell(for cell:ImagesListCell, with: IndexPath) {}
 }
@@ -26,7 +29,7 @@ class ImagesListViewController: UIViewController {
     extension ImagesListViewController: UITableViewDataSource {
         
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 1
+            return photosName.count
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
