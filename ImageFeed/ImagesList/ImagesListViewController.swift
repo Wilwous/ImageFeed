@@ -18,30 +18,51 @@ class ImagesListViewController: UIViewController {
     
     private let photosName: [String] = Array(0..<20).map{ "\($0)" }
     
-    func configCell(for cell:ImagesListCell, with: IndexPath) {}
+    func configCell(for cell:ImagesListCell, with indexPath: IndexPath) {
+        
+        let imagesName = "\(indexPath.row)"
+        let isLiked = indexPath.row % 2 == 0
+        let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
+        
+        lazy var dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            formatter.timeStyle = .none
+            return formatter
+        }()
+        
+        guard let image = UIImage(named: imagesName) else {
+            return
+        }
+        
+        cell.cellImage.image = image
+        cell.dateLabel.text = dateFormatter.string(from:Date())
+        cell.likeButton.setImage(likeImage, for: .normal)
+        
+    }
 }
 
-    extension ImagesListViewController: UITableViewDelegate {
-        
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { }
+extension ImagesListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { }
+}
+
+extension ImagesListViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return photosName.count
     }
     
-    extension ImagesListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
         
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return photosName.count
+        guard let imageListCell = cell as? ImagesListCell else {
+            return UITableViewCell()
         }
         
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
-
-            guard let imageListCell = cell as? ImagesListCell else {
-                return UITableViewCell()
-            }
-
-            configCell(for: imageListCell, with: indexPath)
-
-            return imageListCell
-        }
+        configCell(for: imageListCell, with: indexPath)
+        
+        return imageListCell
     }
+}
 
