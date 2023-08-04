@@ -9,6 +9,8 @@ import UIKit
 
 final class ImagesListCell: UITableViewCell {
     
+    // MARK: - IBOutlet
+    
     @IBOutlet var cellImage: UIImageView!
     @IBOutlet var likeButton: UIButton!
     @IBOutlet var dateLabel: UILabel!
