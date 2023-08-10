@@ -9,11 +9,23 @@ import UIKit
 
 final class ImagesListCell: UITableViewCell {
     
+    static let reuseIdentifier = "ImagesListCell"
+    
     // MARK: - IBOutlet
     
-    @IBOutlet var cellImage: UIImageView!
-    @IBOutlet var likeButton: UIButton!
-    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet private var cellImage: UIImageView!
+    @IBOutlet private var likeButton: UIButton!
+    @IBOutlet private var dateLabel: UILabel!
+}
+
+extension ImagesListCell {
     
-    static let reuseIdentifier = "ImagesListCell"
+    func configCell(image: UIImage?, date: String, isLiked : Bool) {
+        
+        let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
+        
+        cellImage.image = image
+        dateLabel.text = date
+        likeButton.setImage(likeImage, for: .normal)
+    }
 }
