@@ -67,7 +67,6 @@
                                             <outlet property="cellImage" destination="POI-uM-MFV" id="g9B-6m-juc"/>
                                             <outlet property="dateLabel" destination="o6V-h3-ufj" id="Yo6-t1-HJO"/>
                                             <outlet property="likeButton" destination="YHz-Fz-08G" id="bJy-5p-Blc"/>
-                                            <segue destination="3Br-OC-jnr" kind="show" id="zPb-n3-rBC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -89,6 +88,7 @@
                     <navigationItem key="navigationItem" id="xd7-UX-s9m"/>
                     <connections>
                         <outlet property="TableView" destination="tJl-p4-Qts" id="w6P-v6-8X7"/>
+                        <segue destination="3Br-OC-jnr" kind="show" identifier="ShowSingleImage" id="FXn-Oi-myy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -205,10 +205,10 @@
             </objects>
             <point key="canvasLocation" x="-583.20000000000005" y="247.53694581280789"/>
         </scene>
-        <!--Single Image-->
+        <!--Single Image View Controller-->
         <scene sceneID="HmD-sC-y0I">
             <objects>
-                <viewController id="3Br-OC-jnr" userLabel="Single Image" customClass="SingleImageViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3Br-OC-jnr" customClass="SingleImageViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Tj-Bu-Xcj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
