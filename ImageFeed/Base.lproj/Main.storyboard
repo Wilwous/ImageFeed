@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3Br-OC-jnr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fa2-9W-vAL">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -67,6 +67,7 @@
                                             <outlet property="cellImage" destination="POI-uM-MFV" id="g9B-6m-juc"/>
                                             <outlet property="dateLabel" destination="o6V-h3-ufj" id="Yo6-t1-HJO"/>
                                             <outlet property="likeButton" destination="YHz-Fz-08G" id="bJy-5p-Blc"/>
+                                            <segue destination="3Br-OC-jnr" kind="show" id="zPb-n3-rBC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -213,7 +214,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="3DQ-uW-p3B" userLabel="Image View">
-                                <rect key="frame" x="0.0" y="50" width="375" height="728"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="635"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TmH-6e-uRh"/>
@@ -225,6 +226,7 @@
                             <constraint firstAttribute="bottomMargin" secondItem="3DQ-uW-p3B" secondAttribute="bottom" id="hZO-E8-fGB"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="G2N-ml-gof"/>
                     <connections>
                         <outlet property="imageView" destination="3DQ-uW-p3B" id="rIY-vP-aBC"/>
                     </connections>
