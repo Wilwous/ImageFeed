@@ -99,9 +99,9 @@
 			children = (
 				7C5146552A7400D600DB47F7 /* AppDelegate.swift */,
 				7C5146572A7400D600DB47F7 /* SceneDelegate.swift */,
-				7CEDF0AF2AAFA5BF00ADCDDC /* SingleImage */,
-				7CEDF0AC2AAF8C1E00ADCDDC /* Profile */,
 				7CB7ABEB2A7A80F500034C16 /* ImagesList */,
+				7CEDF0AC2AAF8C1E00ADCDDC /* Profile */,
+				7CEDF0AF2AAFA5BF00ADCDDC /* SingleImage */,
 				7C5146602A7400D700DB47F7 /* LaunchScreen.storyboard */,
 				7C51465B2A7400D600DB47F7 /* Main.storyboard */,
 				7C51465E2A7400D700DB47F7 /* Assets.xcassets */,
