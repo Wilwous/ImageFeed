@@ -241,6 +241,12 @@
                                 <state key="normal" title="Войти">
                                     <color key="titleColor" name="YP Black"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="PjX-Zl-DCg" kind="presentation" identifier="ShowWebView" modalPresentationStyle="overFullScreen" id="2yP-5f-0PM"/>
                                 </connections>
@@ -302,6 +308,18 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6WR-BH-ED9" userLabel="Back Button">
+                                <rect key="frame" x="16" y="55" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="rsd-jV-q3K"/>
+                                    <constraint firstAttribute="width" constant="24" id="v61-aJ-zuw"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="nav_back_button"/>
+                                <connections>
+                                    <action selector="didTapBackButton:" destination="PjX-Zl-DCg" eventType="touchUpInside" id="DSa-of-9vG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="B2d-wp-9jp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -310,6 +328,8 @@
                             <constraint firstItem="zfg-Yy-Tli" firstAttribute="leading" secondItem="uEy-SO-MRc" secondAttribute="leading" id="4TH-we-L3y"/>
                             <constraint firstItem="zfg-Yy-Tli" firstAttribute="top" secondItem="uEy-SO-MRc" secondAttribute="top" id="IDr-2f-M7Y"/>
                             <constraint firstAttribute="bottom" secondItem="zfg-Yy-Tli" secondAttribute="bottom" id="SQb-ox-wBK"/>
+                            <constraint firstItem="6WR-BH-ED9" firstAttribute="top" secondItem="B2d-wp-9jp" secondAttribute="top" constant="55" id="UiZ-7d-VEH"/>
+                            <constraint firstItem="6WR-BH-ED9" firstAttribute="leading" secondItem="B2d-wp-9jp" secondAttribute="leading" constant="16" id="rl3-xD-zsH"/>
                         </constraints>
                     </view>
                     <connections>
@@ -327,6 +347,7 @@
         <image name="Sharing" width="50" height="50"/>
         <image name="auth_screen_logo" width="60" height="60"/>
         <image name="like_button_on" width="42" height="42"/>
+        <image name="nav_back_button" width="24" height="24"/>
         <image name="tab_editorial_active" width="30" height="30"/>
         <image name="tab_profile_active" width="30" height="30"/>
         <namedColor name="YP Black">
