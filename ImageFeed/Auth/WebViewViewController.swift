@@ -8,7 +8,11 @@
 import UIKit
 import WebKit
 
-final class WebViewViewController: UIViewController{
+final class WebViewViewController: UIViewController {
+    
+    let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+    
+    weak var delegate: WebViewViewControllerDelegate?
     
     @IBOutlet private weak var webView: WKWebView!
     
@@ -16,7 +20,8 @@ final class WebViewViewController: UIViewController{
     }
     
     override func viewDidLoad() {
-        let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+        super.viewDidLoad()
+        
         var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: AccessKey),
@@ -24,8 +29,10 @@ final class WebViewViewController: UIViewController{
             URLQueryItem(name: "response_type", value: "code"),
             URLQueryItem(name: "scope", value: AccessScope),
         ]
+        
         let url = urlComponents.url!
         let request = URLRequest(url: url)
+        
         webView.load(request)
         webView.navigationDelegate = self
     }
@@ -53,7 +60,7 @@ extension WebViewViewController: WKNavigationDelegate {
         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
     ) {
         if let code = code(from: navigationAction) {
-            //TODO: process code
+            delegate?.webViewViewController(self, didAuthenticateWithCode: code)
             decisionHandler(.cancel)
         } else {
             decisionHandler(.allow)
