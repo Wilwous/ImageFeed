@@ -320,9 +320,8 @@
                                     <action selector="didTapBackButton:" destination="PjX-Zl-DCg" eventType="touchUpInside" id="DSa-of-9vG"/>
                                 </connections>
                             </button>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ENG-xt-FE8">
-                                <rect key="frame" x="0.0" y="87" width="375" height="4"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ENG-xt-FE8">
+                                <rect key="frame" x="0.0" y="89" width="375" height="4"/>
                                 <color key="progressTintColor" name="YP Black"/>
                             </progressView>
                         </subviews>
@@ -332,8 +331,11 @@
                             <constraint firstAttribute="trailing" secondItem="zfg-Yy-Tli" secondAttribute="trailing" id="32L-q4-mMX"/>
                             <constraint firstItem="zfg-Yy-Tli" firstAttribute="leading" secondItem="uEy-SO-MRc" secondAttribute="leading" id="4TH-we-L3y"/>
                             <constraint firstItem="zfg-Yy-Tli" firstAttribute="top" secondItem="uEy-SO-MRc" secondAttribute="top" id="IDr-2f-M7Y"/>
+                            <constraint firstItem="ENG-xt-FE8" firstAttribute="leading" secondItem="uEy-SO-MRc" secondAttribute="leading" id="RkA-HL-UWK"/>
                             <constraint firstAttribute="bottom" secondItem="zfg-Yy-Tli" secondAttribute="bottom" id="SQb-ox-wBK"/>
                             <constraint firstItem="6WR-BH-ED9" firstAttribute="top" secondItem="B2d-wp-9jp" secondAttribute="top" constant="55" id="UiZ-7d-VEH"/>
+                            <constraint firstItem="ENG-xt-FE8" firstAttribute="top" secondItem="6WR-BH-ED9" secondAttribute="bottom" constant="10" id="eZc-BV-1xa"/>
+                            <constraint firstAttribute="trailing" secondItem="ENG-xt-FE8" secondAttribute="trailing" id="lPp-aT-0Vk"/>
                             <constraint firstItem="6WR-BH-ED9" firstAttribute="leading" secondItem="B2d-wp-9jp" secondAttribute="leading" constant="16" id="rl3-xD-zsH"/>
                         </constraints>
                     </view>
