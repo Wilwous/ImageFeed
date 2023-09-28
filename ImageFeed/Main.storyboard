@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -282,6 +283,37 @@
             </objects>
             <point key="canvasLocation" x="-583" y="-491"/>
         </scene>
+        <!--WebView View Controller-->
+        <scene sceneID="hT1-ye-bDw">
+            <objects>
+                <viewController id="PjX-Zl-DCg" userLabel="WebView View Controller" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uEy-SO-MRc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zfg-Yy-Tli">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="B2d-wp-9jp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zfg-Yy-Tli" secondAttribute="trailing" id="32L-q4-mMX"/>
+                            <constraint firstItem="zfg-Yy-Tli" firstAttribute="leading" secondItem="uEy-SO-MRc" secondAttribute="leading" id="4TH-we-L3y"/>
+                            <constraint firstItem="zfg-Yy-Tli" firstAttribute="top" secondItem="uEy-SO-MRc" secondAttribute="top" id="IDr-2f-M7Y"/>
+                            <constraint firstAttribute="bottom" secondItem="zfg-Yy-Tli" secondAttribute="bottom" id="SQb-ox-wBK"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8qJ-AR-bfA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-729" y="-1172"/>
+        </scene>
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
@@ -297,5 +329,8 @@
         <namedColor name="YP White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
