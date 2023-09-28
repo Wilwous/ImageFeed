@@ -320,6 +320,11 @@
                                     <action selector="didTapBackButton:" destination="PjX-Zl-DCg" eventType="touchUpInside" id="DSa-of-9vG"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ENG-xt-FE8">
+                                <rect key="frame" x="0.0" y="87" width="375" height="4"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="progressTintColor" name="YP Black"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="B2d-wp-9jp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -333,12 +338,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="progressView" destination="ENG-xt-FE8" id="6Zu-wM-JAF"/>
                         <outlet property="webView" destination="zfg-Yy-Tli" id="Yxw-ci-7ZX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8qJ-AR-bfA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1318" y="-491"/>
+            <point key="canvasLocation" x="1317.5999999999999" y="-491.37931034482762"/>
         </scene>
     </scenes>
     <resources>
