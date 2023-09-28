@@ -217,7 +217,7 @@
         <!--Auth View Controller-->
         <scene sceneID="0p2-5j-L0c">
             <objects>
-                <viewController id="fqe-eR-oGM" userLabel="Auth View Controller" sceneMemberID="viewController">
+                <viewController id="fqe-eR-oGM" userLabel="Auth View Controller" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BIs-fs-ths">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -241,6 +241,9 @@
                                 <state key="normal" title="Войти">
                                     <color key="titleColor" name="YP Black"/>
                                 </state>
+                                <connections>
+                                    <segue destination="PjX-Zl-DCg" kind="presentation" identifier="ShowWebView" modalPresentationStyle="overFullScreen" id="2yP-5f-0PM"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="F2k-gV-cdd"/>
@@ -286,7 +289,7 @@
         <!--WebView View Controller-->
         <scene sceneID="hT1-ye-bDw">
             <objects>
-                <viewController id="PjX-Zl-DCg" userLabel="WebView View Controller" sceneMemberID="viewController">
+                <viewController id="PjX-Zl-DCg" userLabel="WebView View Controller" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uEy-SO-MRc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -309,10 +312,13 @@
                             <constraint firstAttribute="bottom" secondItem="zfg-Yy-Tli" secondAttribute="bottom" id="SQb-ox-wBK"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="webView" destination="zfg-Yy-Tli" id="Yxw-ci-7ZX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8qJ-AR-bfA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-729" y="-1172"/>
+            <point key="canvasLocation" x="1318" y="-491"/>
         </scene>
     </scenes>
     <resources>
