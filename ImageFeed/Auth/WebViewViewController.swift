@@ -23,21 +23,9 @@ final class WebViewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!
-        urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: AccessKey),
-            URLQueryItem(name: "redirect_uri", value: RedirectURI),
-            URLQueryItem(name: "response_type", value: "code"),
-            URLQueryItem(name: "scope", value: AccessScope),
-        ]
-        
-        let url = urlComponents.url!
-        let request = URLRequest(url: url)
-        
-        webView.load(request)
         webView.navigationDelegate = self
         updateProgress()
+        loadWebView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,7 +64,22 @@ final class WebViewViewController: UIViewController {
 
 extension WebViewViewController: WKNavigationDelegate {
     
-    private func code(from navigationAction: WKNavigationAction) -> String? {
+    func loadWebView() {
+        var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "client_id", value: AccessKey),
+            URLQueryItem(name: "redirect_uri", value: RedirectURI),
+            URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "scope", value: AccessScope),
+        ]
+        
+        if let url = urlComponents?.url {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
+    }
+    
+    func code(from navigationAction: WKNavigationAction) -> String? {
         if
             let url = navigationAction.request.url,
             let urlComponents = URLComponents(string: url.absoluteString),
