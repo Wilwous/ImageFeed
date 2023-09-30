@@ -8,18 +8,28 @@
 import UIKit
 import WebKit
 
+// MARK: - WebViewViewController
+
 final class WebViewViewController: UIViewController {
     
+    // MARK: Constants
+    
     let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+    
+    // MARK: Properties
     
     weak var delegate: WebViewViewControllerDelegate?
     
     @IBOutlet private weak var webView: WKWebView!
     @IBOutlet private var progressView: UIProgressView!
     
+    // MARK: Actions
+    
     @IBAction func didTapBackButton(_ sender: Any) {
         delegate?.webViewViewControllerDidCancel(self)
     }
+    
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +53,8 @@ final class WebViewViewController: UIViewController {
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
     }
     
+    // MARK: KVO
+    
     override func observeValue(
         forKeyPath keyPath: String?,
         of object: Any?,
@@ -56,13 +68,19 @@ final class WebViewViewController: UIViewController {
         }
     }
     
+    // MARK: Private Functions
+    
     private func updateProgress() {
         progressView.progress = Float(webView.estimatedProgress)
         progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
     }
 }
 
+// MARK: - WKNavigationDelegate
+
 extension WebViewViewController: WKNavigationDelegate {
+    
+    // MARK: WebView Loading
     
     func loadWebView() {
         var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)
@@ -79,6 +97,8 @@ extension WebViewViewController: WKNavigationDelegate {
         }
     }
     
+    // MARK: Code Extraction
+    
     func code(from navigationAction: WKNavigationAction) -> String? {
         if
             let url = navigationAction.request.url,
@@ -93,6 +113,8 @@ extension WebViewViewController: WKNavigationDelegate {
         }
     }
     
+    // MARK: Decision Handling
+    
     func webView(
         _ webView: WKWebView,
         decidePolicyFor navigationAction: WKNavigationAction,
@@ -106,3 +128,4 @@ extension WebViewViewController: WKNavigationDelegate {
         }
     }
 }
+

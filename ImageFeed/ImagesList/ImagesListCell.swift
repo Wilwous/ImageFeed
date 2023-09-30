@@ -9,6 +9,8 @@ import UIKit
 
 final class ImagesListCell: UITableViewCell {
     
+    // MARK: - Constants
+    
     static let reuseIdentifier = "ImagesListCell"
     
     // MARK: - IBOutlet
@@ -18,9 +20,11 @@ final class ImagesListCell: UITableViewCell {
     @IBOutlet private weak var dateLabel: UILabel!
 }
 
+// MARK: - Public Functions
+
 extension ImagesListCell {
     
-    func configCell(image: UIImage?, date: String, isLiked : Bool) {
+    func configCell(image: UIImage?, date: String, isLiked: Bool) {
         
         let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
         
@@ -29,3 +33,4 @@ extension ImagesListCell {
         likeButton.setImage(likeImage, for: .normal)
     }
 }
+
