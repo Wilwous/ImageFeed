@@ -7,11 +7,20 @@
 
 import UIKit
 
+// MARK: - AuthViewControllerDelegate
+
+protocol AuthViewControllerDelegate: AnyObject {
+    func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String)
+}
+
 class AuthViewController: UIViewController {
     
     // MARK: - Properties
     
     private var showWebViewSegueIdentifier = "ShowWebView"
+    private let oauth2Service = OAuth2Service()
+    
+    weak var delegate: AuthViewControllerDelegate?
     
     // MARK: - Segue
     
@@ -32,9 +41,9 @@ class AuthViewController: UIViewController {
 extension AuthViewController: WebViewViewControllerDelegate {
     
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
-        // TODO: process code
+        delegate?.authViewController(self, didAuthenticateWithCode: code)
     }
-    
+
     func webViewViewControllerDidCancel(_ vc: WebViewViewController) {
         dismiss(animated: true)
     }

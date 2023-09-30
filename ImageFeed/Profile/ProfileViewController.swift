@@ -34,6 +34,8 @@ final class ProfileViewController: UIViewController {
         setupLogoutButton()
     }
     
+    // MARK: - Private Func
+    
     private func setupAvatarImageView() {
         avatarImageView = UIImageView(image: UIImage(named: "Avatar"))
         avatarImageView.tintColor = .gray

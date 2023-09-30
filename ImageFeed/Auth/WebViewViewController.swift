@@ -8,6 +8,13 @@
 import UIKit
 import WebKit
 
+// MARK: - WebViewViewControllerDelegate
+
+protocol WebViewViewControllerDelegate: AnyObject{
+    func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String)
+    func webViewViewControllerDidCancel(_ vc: WebViewViewController)
+}
+
 // MARK: - WebViewViewController
 
 final class WebViewViewController: UIViewController {
@@ -85,10 +92,10 @@ extension WebViewViewController: WKNavigationDelegate {
     func loadWebView() {
         var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)
         urlComponents?.queryItems = [
-            URLQueryItem(name: "client_id", value: AccessKey),
-            URLQueryItem(name: "redirect_uri", value: RedirectURI),
+            URLQueryItem(name: "client_id", value: Constants.accessKey),
+            URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),
             URLQueryItem(name: "response_type", value: "code"),
-            URLQueryItem(name: "scope", value: AccessScope),
+            URLQueryItem(name: "scope", value: Constants.accessScope),
         ]
         
         if let url = urlComponents?.url {
