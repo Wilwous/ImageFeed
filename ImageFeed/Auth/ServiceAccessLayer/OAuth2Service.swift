@@ -7,9 +7,7 @@
 
 import Foundation
 
-import Foundation
-
-struct OAuthTokenResponseBody: Decodable {
+private struct OAuthTokenResponseBody: Decodable {
     let access_token: String
     let token_type: String
     let scope: String
@@ -76,7 +74,10 @@ final class OAuth2Service {
             "code": code,
             "grant_type": "authorization_code"
         ]
-        return URLRequest.makeHTTPRequest(urlString: urlString, parameters: parameters, httpMethod: "POST")
+        return URLRequest.makeHTTPRequest(
+            urlString: urlString,
+            parameters: parameters,
+            httpMethod: "POST")
     }
 }
 
