@@ -352,7 +352,7 @@
         <!--Splash View Controller-->
         <scene sceneID="JMg-g9-UL1">
             <objects>
-                <viewController id="mYP-1V-JAH" userLabel="Splash View Controller" sceneMemberID="viewController">
+                <viewController id="mYP-1V-JAH" userLabel="Splash View Controller" customClass="SplashViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FoV-2P-DPs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -369,7 +369,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="8Hj-Js-Dsm" kind="presentation" identifier="ShowAuthenticationScreen" modalPresentationStyle="overFullScreen" id="d4P-jM-8Js"/>
+                        <segue destination="8Hj-Js-Dsm" kind="presentation" identifier="ShowAuthenticationScreen" modalPresentationStyle="fullScreen" id="d4P-jM-8Js"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0lX-cz-gn3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
