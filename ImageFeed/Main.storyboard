@@ -233,7 +233,6 @@
                                 <rect key="frame" x="16" y="640" width="343" height="48"/>
                                 <color key="backgroundColor" name="YP White"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="2ue-lp-YFu"/>
                                     <constraint firstAttribute="height" constant="48" id="oPp-4E-jrr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -310,10 +309,10 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6WR-BH-ED9" userLabel="Back Button">
-                                <rect key="frame" x="16" y="55" width="24" height="24"/>
+                                <rect key="frame" x="0.0" y="35" width="44" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="rsd-jV-q3K"/>
-                                    <constraint firstAttribute="width" constant="24" id="v61-aJ-zuw"/>
+                                    <constraint firstAttribute="height" constant="44" id="rsd-jV-q3K"/>
+                                    <constraint firstAttribute="width" constant="44" id="v61-aJ-zuw"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="nav_back_button"/>
@@ -321,8 +320,8 @@
                                     <action selector="didTapBackButton:" destination="PjX-Zl-DCg" eventType="touchUpInside" id="DSa-of-9vG"/>
                                 </connections>
                             </button>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ENG-xt-FE8">
-                                <rect key="frame" x="0.0" y="82" width="375" height="4"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ENG-xt-FE8">
+                                <rect key="frame" x="0.0" y="79" width="375" height="4"/>
                                 <color key="progressTintColor" name="YP Black"/>
                             </progressView>
                         </subviews>
@@ -334,10 +333,10 @@
                             <constraint firstItem="zfg-Yy-Tli" firstAttribute="top" secondItem="uEy-SO-MRc" secondAttribute="top" id="IDr-2f-M7Y"/>
                             <constraint firstItem="ENG-xt-FE8" firstAttribute="leading" secondItem="uEy-SO-MRc" secondAttribute="leading" id="RkA-HL-UWK"/>
                             <constraint firstAttribute="bottom" secondItem="zfg-Yy-Tli" secondAttribute="bottom" id="SQb-ox-wBK"/>
-                            <constraint firstItem="6WR-BH-ED9" firstAttribute="top" secondItem="B2d-wp-9jp" secondAttribute="top" constant="55" id="UiZ-7d-VEH"/>
-                            <constraint firstItem="ENG-xt-FE8" firstAttribute="top" secondItem="6WR-BH-ED9" secondAttribute="bottom" constant="3" id="eZc-BV-1xa"/>
+                            <constraint firstItem="6WR-BH-ED9" firstAttribute="top" secondItem="B2d-wp-9jp" secondAttribute="top" id="Y9K-Eh-oF1"/>
+                            <constraint firstItem="ENG-xt-FE8" firstAttribute="top" secondItem="6WR-BH-ED9" secondAttribute="bottom" id="eZc-BV-1xa"/>
                             <constraint firstAttribute="trailing" secondItem="ENG-xt-FE8" secondAttribute="trailing" id="lPp-aT-0Vk"/>
-                            <constraint firstItem="6WR-BH-ED9" firstAttribute="leading" secondItem="B2d-wp-9jp" secondAttribute="leading" constant="16" id="rl3-xD-zsH"/>
+                            <constraint firstItem="6WR-BH-ED9" firstAttribute="leading" secondItem="B2d-wp-9jp" secondAttribute="leading" id="rl3-xD-zsH"/>
                         </constraints>
                     </view>
                     <connections>

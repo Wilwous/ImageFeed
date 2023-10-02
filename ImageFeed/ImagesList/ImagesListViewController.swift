@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImagesListViewController: UIViewController {
+final class ImagesListViewController: UIViewController {
     
     // MARK: - IBOutlet
     
@@ -46,6 +46,7 @@ class ImagesListViewController: UIViewController {
     
     // MARK: - Segue
     
+    //  TDOO Тут мне нужно развернуть опционал
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == ShowSingleImageSegueIdentifier {
             let viewController = segue.destination as! SingleImageViewController
