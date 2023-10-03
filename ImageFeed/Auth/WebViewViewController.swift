@@ -23,18 +23,12 @@ final class WebViewViewController: UIViewController {
     
     let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
     
-    // MARK: Properties
-    
     weak var delegate: WebViewViewControllerDelegate?
+    
+    // MARK: IBOutlet
     
     @IBOutlet private weak var webView: WKWebView!
     @IBOutlet private var progressView: UIProgressView!
-    
-    // MARK: Actions
-    
-    @IBAction func didTapBackButton(_ sender: Any) {
-        delegate?.webViewViewControllerDidCancel(self)
-    }
     
     // MARK: Lifecycle
     
@@ -86,6 +80,12 @@ final class WebViewViewController: UIViewController {
         } else {
             progressView.isHidden = false
         }
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func didTapBackButton(_ sender: Any) {
+        delegate?.webViewViewControllerDidCancel(self)
     }
 }
 

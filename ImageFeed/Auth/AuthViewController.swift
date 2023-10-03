@@ -17,10 +17,10 @@ class AuthViewController: UIViewController {
     
     // MARK: - Properties
     
+    weak var delegate: AuthViewControllerDelegate?
+    
     private var showWebViewSegueIdentifier = "ShowWebView"
     private let oauth2Service = OAuth2Service()
-    
-    weak var delegate: AuthViewControllerDelegate?
     
     // MARK: - Segue
     
@@ -34,6 +34,10 @@ class AuthViewController: UIViewController {
             super.prepare(for: segue, sender: sender)
         }
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
 // MARK: - WebViewViewControllerDelegate
@@ -43,7 +47,7 @@ extension AuthViewController: WebViewViewControllerDelegate {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         delegate?.authViewController(self, didAuthenticateWithCode: code)
     }
-
+    
     func webViewViewControllerDidCancel(_ vc: WebViewViewController) {
         dismiss(animated: true)
     }

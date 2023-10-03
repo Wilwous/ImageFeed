@@ -9,14 +9,14 @@ import UIKit
 
 final class ImagesListViewController: UIViewController {
     
-    // MARK: - IBOutlet
-    
-    @IBOutlet weak private var tableView: UITableView!
-    
     // MARK: - Private Properties
     
     private let photosName: [String] = Array(0..<20).map { "\($0)" }
     private let ShowSingleImageSegueIdentifier = "ShowSingleImage"
+    
+    // MARK: - IBOutlet
+    
+    @IBOutlet weak private var tableView: UITableView!
     
     // MARK: - DateFormatter
     
@@ -26,6 +26,12 @@ final class ImagesListViewController: UIViewController {
         formatter.locale = Locale(identifier: "ru_RU")
         return formatter
     }()
+    
+    // MARK: - TableView Configuration
+    
+    private func configureTableView() {
+        tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
+    }
     
     // MARK: - Lifecycle
     
@@ -38,15 +44,8 @@ final class ImagesListViewController: UIViewController {
         return .lightContent
     }
     
-    // MARK: - TableView Configuration
-    
-    private func configureTableView() {
-        tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
-    }
-    
     // MARK: - Segue
     
-    //  TDOO Тут мне нужно развернуть опционал
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == ShowSingleImageSegueIdentifier {
             if let viewController = segue.destination as? SingleImageViewController,

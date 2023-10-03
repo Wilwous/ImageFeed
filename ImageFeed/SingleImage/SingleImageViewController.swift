@@ -40,20 +40,6 @@ final class SingleImageViewController: UIViewController {
         rescaleAndCenterImageInScrollView(image: image)
     }
     
-    // MARK: - Button Actions
-    
-    @IBAction func didTapBackButton() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func didTapShareButton(_ sender: Any) {
-        let shareButton = UIActivityViewController(
-            activityItems: [image ?? UIImage()],
-            applicationActivities: nil
-        )
-        present(shareButton, animated: true)
-    }
-    
     // MARK: - Image Scaling and Centering
     
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
@@ -71,6 +57,20 @@ final class SingleImageViewController: UIViewController {
         let x = (newContentSize.width - visibleRectSize.width) / 2
         let y = (newContentSize.height - visibleRectSize.height) / 2
         scrollView.setContentOffset(CGPoint(x: x, y: y), animated: false)
+    }
+    
+    // MARK: - Button Actions
+    
+    @IBAction func didTapBackButton() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func didTapShareButton(_ sender: Any) {
+        let shareButton = UIActivityViewController(
+            activityItems: [image ?? UIImage()],
+            applicationActivities: nil
+        )
+        present(shareButton, animated: true)
     }
 }
 
