@@ -28,7 +28,7 @@ final class WebViewViewController: UIViewController {
     // MARK: IBOutlet
     
     @IBOutlet private weak var webView: WKWebView!
-    @IBOutlet private var progressView: UIProgressView!
+    @IBOutlet private weak var progressView: UIProgressView!
     
     // MARK: Lifecycle
     

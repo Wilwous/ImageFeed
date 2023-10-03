@@ -16,7 +16,7 @@ final class ImagesListViewController: UIViewController {
     
     // MARK: - IBOutlet
     
-    @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
     // MARK: - DateFormatter
     
