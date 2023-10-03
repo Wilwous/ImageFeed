@@ -49,14 +49,15 @@ final class ImagesListViewController: UIViewController {
     //  TDOO Тут мне нужно развернуть опционал
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == ShowSingleImageSegueIdentifier {
-            let viewController = segue.destination as! SingleImageViewController
-            let indexPath = sender as! IndexPath
-            let imageName = photosName[indexPath.row]
-            if let image = UIImage(named: imageName) {
-                viewController.image = image
+            if let viewController = segue.destination as? SingleImageViewController,
+               let indexPath = sender as? IndexPath {
+                let imageName = photosName[indexPath.row]
+                if let image = UIImage(named: imageName) {
+                    viewController.image = image
+                }
+            } else {
+                super.prepare(for: segue, sender: sender)
             }
-        } else {
-            super.prepare(for: segue, sender: sender)
         }
     }
 }
