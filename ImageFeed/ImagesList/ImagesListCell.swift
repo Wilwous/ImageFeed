@@ -24,7 +24,11 @@ final class ImagesListCell: UITableViewCell {
 
 extension ImagesListCell {
     
-    func configCell(image: UIImage?, date: String, isLiked: Bool) {
+    func configCell(
+        image: UIImage?,
+        date: String,
+        isLiked: Bool
+    ) {
         
         let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
         

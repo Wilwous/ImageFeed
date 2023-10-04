@@ -12,6 +12,13 @@ private struct OAuthTokenResponseBody: Decodable {
     let tokenType: String
     let scope: String
     let createdAt: Int
+
+    enum CodingKeys: String, CodingKey {
+           case accessToken = "access_token"
+           case tokenType = "token_type"
+           case scope
+           case createdAt = "created_at"
+       }
 }
 
 final class OAuth2Service {
@@ -31,7 +38,7 @@ final class OAuth2Service {
         _ code: String,
         completion: @escaping (Result<String, Error>) -> Void
     ) {
-        let request = authTokenRequest(code: code)
+    let request = authTokenRequest(code: code)
         let task = fetchTokenTask(request: request) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -51,19 +58,13 @@ final class OAuth2Service {
         completion: @escaping (Result<OAuthTokenResponseBody, Error>) -> Void
     ) -> URLSessionTask {
         let decoder = JSONDecoder()
-        return urlSession.dataTask(with: request) { (data, response, error) in
-            if let data = data {
-                do {
-                    let tokenResponse = try decoder.decode(OAuthTokenResponseBody.self, from: data)
-                    completion(.success(tokenResponse))
-                } catch {
-                    completion(.failure(error))
+        return urlSession.data(for: request) { (result: Result<Data, Error>) in
+                    let response = result.flatMap { data -> Result<OAuthTokenResponseBody, Error> in
+                        Result { try decoder.decode(OAuthTokenResponseBody.self, from: data) }
+                    }
+                    completion(response)
                 }
-            } else if let error = error {
-                completion(.failure(error))
             }
-        }
-    }
     
     private func authTokenRequest(code: String) -> URLRequest {
         let urlString = "https://unsplash.com/oauth/token"
