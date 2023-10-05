@@ -255,7 +255,7 @@
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
                             <constraint firstItem="ZQf-J0-HnJ" firstAttribute="centerY" secondItem="BIs-fs-ths" secondAttribute="centerY" id="3nU-LD-mak"/>
-                            <constraint firstItem="F2k-gV-cdd" firstAttribute="bottom" secondItem="fKP-zP-HWz" secondAttribute="bottom" constant="124" id="3uJ-Nf-LtB"/>
+                            <constraint firstAttribute="bottom" secondItem="fKP-zP-HWz" secondAttribute="bottom" constant="124" id="3uJ-Nf-LtB"/>
                             <constraint firstItem="ZQf-J0-HnJ" firstAttribute="centerX" secondItem="BIs-fs-ths" secondAttribute="centerX" id="c1M-N4-D1C"/>
                             <constraint firstItem="F2k-gV-cdd" firstAttribute="trailing" secondItem="fKP-zP-HWz" secondAttribute="trailing" constant="16" id="cGX-rw-FF1"/>
                             <constraint firstItem="fKP-zP-HWz" firstAttribute="leading" secondItem="F2k-gV-cdd" secondAttribute="leading" constant="16" id="iLN-sT-bXK"/>
@@ -309,7 +309,7 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6WR-BH-ED9" userLabel="Back Button">
-                                <rect key="frame" x="0.0" y="35" width="44" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="rsd-jV-q3K"/>
                                     <constraint firstAttribute="width" constant="44" id="v61-aJ-zuw"/>
@@ -320,8 +320,8 @@
                                     <action selector="didTapBackButton:" destination="PjX-Zl-DCg" eventType="touchUpInside" id="DSa-of-9vG"/>
                                 </connections>
                             </button>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ENG-xt-FE8">
-                                <rect key="frame" x="0.0" y="79" width="375" height="4"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ENG-xt-FE8">
+                                <rect key="frame" x="0.0" y="44" width="375" height="4"/>
                                 <color key="progressTintColor" name="YP Black"/>
                             </progressView>
                         </subviews>
