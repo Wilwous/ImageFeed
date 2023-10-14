@@ -17,6 +17,8 @@ final class ProfileViewController: UIViewController {
     private var descriptionLabel: UILabel!
     private var logoutButton: UIButton!
     
+    private let profileService = ProfileService.shared
+    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -118,5 +120,14 @@ final class ProfileViewController: UIViewController {
         loginNameLabel.removeFromSuperview()
         descriptionLabel.removeFromSuperview()
         logoutButton.removeFromSuperview()
+    }
+}
+
+extension ProfileViewController {
+    private func updateProfileDetails() {
+        guard let profile = profileService.profile else { return }
+        nameLabel.text = profile.name
+        loginNameLabel.text = profile.loginName
+        descriptionLabel.text = profile.bio
     }
 }
