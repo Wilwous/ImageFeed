@@ -24,6 +24,7 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        updateProfileDetails()
     }
     
     // MARK: - UI Setup

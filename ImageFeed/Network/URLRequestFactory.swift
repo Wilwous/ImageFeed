@@ -19,19 +19,21 @@ final class URLRequestFactory {
     
     // MARK: - HTTP Request
     func makeHTTPRequest(
-        urlString: String,
-        parameters: [String: String],
-        httpMethod: String
-    ) -> URLRequest {
-        var urlComponents = URLComponents(string: urlString)
-        var queryItems: [URLQueryItem] = []
-        for (key, value) in parameters {
-            queryItems.append(URLQueryItem(name: key, value: value))
-        }
-        urlComponents?.queryItems = queryItems
+        path: String,
+        httpMethod: String,
+        baseURLString: String = Constants.defaultBaseURL
+    ) -> URLRequest? {
+        guard
+            let url = URL(string: baseURLString),
+            let baseURL = URL(string: path, relativeTo: url)
+        else { return nil }
         
-        var request = URLRequest(url: urlComponents!.url!)
+        var request = URLRequest(url: baseURL)
         request.httpMethod = httpMethod
+        
+        if let token = storage.token {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
         return request
     }
 }

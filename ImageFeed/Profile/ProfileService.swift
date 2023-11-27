@@ -57,15 +57,9 @@ final class ProfileService {
     }
 
     private func profileRequest() -> URLRequest? {
-        let baseURL = Constants.defaultBaseURL
-        let path = "/me"
-        let httpMethod = "GET"
-
-        return urlRequestFactory.makeHTTPRequest(
-            urlString: baseURL.appendingPathComponent(path).absoluteString,
-            parameters: [:],
-            httpMethod: httpMethod
+        urlRequestFactory.makeHTTPRequest(
+            path: "/me",
+            httpMethod: "GET"
         )
     }
-
 }
