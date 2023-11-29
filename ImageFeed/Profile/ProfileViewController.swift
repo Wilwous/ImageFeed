@@ -24,7 +24,9 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        updateProfileDetails()
+        if let bearerToken = OAuth2TokenStorage.shared.token {
+                updateProfileDetails(bearerToken)
+            }
     }
     
     // MARK: - UI Setup
@@ -125,10 +127,17 @@ final class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController {
-    private func updateProfileDetails() {
-        guard let profile = profileService.profile else { return }
-        nameLabel.text = profile.name
-        loginNameLabel.text = profile.loginName
-        descriptionLabel.text = profile.bio
-    }
+    func updateProfileDetails(_ token: String) {
+            profileService.fetchProfile(token) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let profile):
+                    self.nameLabel.text = profile.name
+                    self.loginNameLabel.text = profile.loginName
+                    self.descriptionLabel.text = profile.bio
+                case .failure(let error):
+                    print("Failed to fetch profile: \(error)")
+                }
+            }
+        }
 }

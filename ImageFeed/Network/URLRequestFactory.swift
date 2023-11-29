@@ -21,7 +21,7 @@ final class URLRequestFactory {
     func makeHTTPRequest(
         path: String,
         httpMethod: String,
-        baseURLString: String = Constants.defaultBaseURL
+        baseURLString: String = Constants.defaultApiBaseURLString
     ) -> URLRequest? {
         guard
             let url = URL(string: baseURLString),

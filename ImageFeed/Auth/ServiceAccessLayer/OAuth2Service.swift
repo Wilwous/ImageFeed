@@ -9,12 +9,12 @@ import Foundation
 
 final class OAuth2Service {
     static let shared = OAuth2Service()
-    
+
     private let urlSession = URLSession.shared
-    
+
     private var task: URLSessionTask?
     private var lastCode: String?
-    
+
     private (set) var authToken: String? {
         get {
             return OAuth2TokenStorage().token
@@ -23,7 +23,7 @@ final class OAuth2Service {
             OAuth2TokenStorage().token = newValue
         }
     }
-    
+
     func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
         if lastCode == code { return }
@@ -46,7 +46,7 @@ final class OAuth2Service {
         self.task = task
         task.resume()
     }
-    
+
     private func fetchTokenTask(
         request: URLRequest,
         completion: @escaping (Result<OAuthTokenResponseBody, Error>) -> Void
@@ -59,7 +59,7 @@ final class OAuth2Service {
             completion(response)
         }
     }
-    
+
     private func authTokenRequest(code: String) -> URLRequest {
         var components = URLComponents(string: "https://unsplash.com/oauth/token")!
         components.queryItems = [
@@ -69,10 +69,11 @@ final class OAuth2Service {
             URLQueryItem(name: "code", value: code),
             URLQueryItem(name: "grant_type", value: "authorization_code")
         ]
-        
+
         var request = URLRequest(url: components.url!)
         request.httpMethod = "POST"
-        
+
         return request
     }
 }
+

@@ -18,21 +18,22 @@ final class ProfileService {
     init(urlRequestFactory: URLRequestFactory = .shared) {
         self.urlRequestFactory = urlRequestFactory
     }
-    
-    func fetchProfile(completion: @escaping (Result <Profile, Error>) -> Void) {
-        assert(Thread.isMainThread)
+
+    func fetchProfile(
+        _ token: String,
+        completion: @escaping (Result <Profile, Error>) -> Void
+    ) {
         task?.cancel()
-        guard let request = profileRequest() else {
+        guard let request = profileRequest(token: token) else {
             assertionFailure("Invalid request")
             completion(.failure(NetworkError.invalidRequest))
             return
         }
         let task = updateUserProfile(for: request) { [weak self] result in
             guard let self = self else { return }
-            
             switch result {
-            case .success(let profilDetails):
-                let profile = Profile(from: profilDetails)
+            case .success(let body):
+                let profile = Profile(result: body)
                 self.profile = profile
                 completion(.success(profile))
                 self.task = nil
@@ -56,7 +57,7 @@ final class ProfileService {
         }
     }
 
-    private func profileRequest() -> URLRequest? {
+    private func profileRequest(token: String) -> URLRequest? {
         urlRequestFactory.makeHTTPRequest(
             path: "/me",
             httpMethod: "GET"
