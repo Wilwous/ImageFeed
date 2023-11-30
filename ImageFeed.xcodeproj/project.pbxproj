@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7C1478402ABF6A5000578F52 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C14783F2ABF6A5000578F52 /* UIColor.swift */; };
+		7C3BC65E2B187D2200B8FE6D /* ProfileImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BC65D2B187D2200B8FE6D /* ProfileImageService.swift */; };
+		7C3BC6602B187D6C00B8FE6D /* ProfileImagesStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BC65F2B187D6C00B8FE6D /* ProfileImagesStructures.swift */; };
 		7C5146562A7400D600DB47F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5146552A7400D600DB47F7 /* AppDelegate.swift */; };
 		7C5146582A7400D600DB47F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5146572A7400D600DB47F7 /* SceneDelegate.swift */; };
 		7C51465A2A7400D600DB47F7 /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5146592A7400D600DB47F7 /* ImagesListViewController.swift */; };
@@ -51,6 +53,8 @@
 
 /* Begin PBXFileReference section */
 		7C14783F2ABF6A5000578F52 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		7C3BC65D2B187D2200B8FE6D /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
+		7C3BC65F2B187D6C00B8FE6D /* ProfileImagesStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagesStructures.swift; sourceTree = "<group>"; };
 		7C5146522A7400D600DB47F7 /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C5146552A7400D600DB47F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C5146572A7400D600DB47F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 				7CEDF0AD2AAF8D2000ADCDDC /* ProfileViewController.swift */,
 				7CD5C8CD2AD589020020C3DF /* ProfileService.swift */,
 				7CD5C8CF2AD7E4780020C3DF /* ProfileStructures.swift */,
+				7C3BC65D2B187D2200B8FE6D /* ProfileImageService.swift */,
+				7C3BC65F2B187D6C00B8FE6D /* ProfileImagesStructures.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -348,6 +354,7 @@
 				7C9B75752AC5662400D7A111 /* WebViewViewController.swift in Sources */,
 				7C51465A2A7400D600DB47F7 /* ImagesListViewController.swift in Sources */,
 				7C8D1A272AC88A9A0059BC95 /* OAuth2Service.swift in Sources */,
+				7C3BC6602B187D6C00B8FE6D /* ProfileImagesStructures.swift in Sources */,
 				7CD5C8D92ADAA6810020C3DF /* URLRequestFactory.swift in Sources */,
 				7C1478402ABF6A5000578F52 /* UIColor.swift in Sources */,
 				7CB7ABEA2A7A807C00034C16 /* ImagesListCell.swift in Sources */,
@@ -362,6 +369,7 @@
 				7C9B756F2AC5623200D7A111 /* AuthViewController.swift in Sources */,
 				7C8D1A292AC8937B0059BC95 /* OAuth2TokenStorage.swift in Sources */,
 				7C9B756E2AC5623200D7A111 /* Constants.swift in Sources */,
+				7C3BC65E2B187D2200B8FE6D /* ProfileImageService.swift in Sources */,
 				7CD5C8CC2AD581670020C3DF /* UIBlockingProgressHUD.swift in Sources */,
 				7CD5C8CE2AD589020020C3DF /* ProfileService.swift in Sources */,
 			);
