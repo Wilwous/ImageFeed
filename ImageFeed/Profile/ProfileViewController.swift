@@ -18,6 +18,7 @@ final class ProfileViewController: UIViewController {
     private var logoutButton: UIButton!
     
     private let profileService = ProfileService.shared
+    private var profileImageServiceObserver: NSObjectProtocol?
     
     // MARK: - View Lifecycle
     
@@ -25,8 +26,19 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         if let bearerToken = OAuth2TokenStorage.shared.token {
-                updateProfileDetails(bearerToken)
-            }
+            updateProfileDetails(bearerToken)
+            
+            profileImageServiceObserver = NotificationCenter.default
+                .addObserver(
+                    forName: ProfileImageService.didChangeNotification,
+                    object: nil,
+                    queue: .main
+                ) { [weak self] _ in
+                    guard let self = self else { return }
+                    self.updateAvatar()
+                }
+            updateAvatar()
+        }
     }
     
     // MARK: - UI Setup
@@ -40,6 +52,14 @@ final class ProfileViewController: UIViewController {
     }
     
     // MARK: - Private Func
+    
+    private func updateAvatar() {
+        guard
+            let profileImageURL = ProfileImageService.shared.avatarURL,
+            let url = URL(string: profileImageURL)
+        else { return }
+        // TODO [Sprint 11] Обновить аватар, используя Kingfisher
+    }
     
     private func setupAvatarImageView() {
         avatarImageView = UIImageView(image: UIImage(named: "Avatar"))
