@@ -18,7 +18,7 @@ final class ProfileService {
     init(urlRequestFactory: URLRequestFactory = .shared) {
         self.urlRequestFactory = urlRequestFactory
     }
-
+    
     func fetchProfile(
         _ token: String,
         completion: @escaping (Result <Profile, Error>) -> Void
@@ -29,7 +29,7 @@ final class ProfileService {
             completion(.failure(NetworkError.invalidRequest))
             return
         }
-        let task = updateUserProfile(for: request) { [weak self] result in
+        let task = urlSession.objectTask(for: request) { [weak self] (result: Result <ProfileResult, Error>) in
             guard let self = self else { return }
             switch result {
             case .success(let body):
@@ -44,19 +44,9 @@ final class ProfileService {
         self.task = task
         task.resume()
     }
-    
-    private func updateUserProfile(
-        for request: URLRequest,
-        completion: @escaping (Result<ProfileResult, Error>) -> Void
-    ) -> URLSessionTask {
-        return urlSession.data(for: request) { (result: Result<Data, Error>) in
-            let response = result.flatMap { data -> Result<ProfileResult, Error> in
-                Result { try JSONDecoder().decode(ProfileResult.self, from: data) }
-            }
-            completion(response)
-        }
-    }
+}
 
+    extension ProfileService{
     private func profileRequest(token: String) -> URLRequest? {
         urlRequestFactory.makeHTTPRequest(
             path: "/me",
