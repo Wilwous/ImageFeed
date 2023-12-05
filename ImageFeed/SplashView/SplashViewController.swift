@@ -14,6 +14,12 @@ final class SplashViewController: UIViewController {
     private let oauth2Service = OAuth2Service()
     private let oauth2TokenStorage = OAuth2TokenStorage()
     private let profileService = ProfileService.shared
+    private let alertPresenter = AlertPresenter()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        alertPresenter.delegate = self
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -71,8 +77,9 @@ extension SplashViewController: AuthViewControllerDelegate {
             switch result {
             case .success(let token):
                 self.fetchProfile(token: token)
-            case .failure:
+            case .failure(let error):
                 UIBlockingProgressHUD.dismiss()
+                self.showLoginAlert(error: error)
                 break
             }
         }
@@ -87,11 +94,18 @@ extension SplashViewController: AuthViewControllerDelegate {
                 guard let username = self.profileService.profile?.username else { return }
                 ProfileImageService.shared.fetchProfileImageURL(username: username) { _ in }
                 self.switchToTabBarController()
-            case .failure:
+            case .failure(let error):
                 UIBlockingProgressHUD.dismiss()
-                // TODO [Sprint 11] Показать ошибку
+                self.showLoginAlert(error: error)
                 break
             }
+        }
+    }
+    
+    func showLoginAlert(error: Error) {
+        alertPresenter.showAlert(title: "Что-то пошло не так :(",
+                                 message: "Не удалось войти в систему: \(error.localizedDescription)") {
+            self.performSegue(withIdentifier: self.showAuthenticationScreenSegueIdentifier, sender: nil)
         }
     }
 }
