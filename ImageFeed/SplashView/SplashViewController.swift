@@ -23,8 +23,9 @@ final class SplashViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        guard UIBlockingProgressHUD.isShowing == false else { return }
         if let token = oauth2TokenStorage.token {
+            fetchProfile(token: token)
             switchToTabBarController()
         } else {
             performSegue(withIdentifier: showAuthenticationScreenSegueIdentifier, sender: nil)
@@ -102,10 +103,23 @@ extension SplashViewController: AuthViewControllerDelegate {
         }
     }
     
+    //    Alert
+    func presentAuthViewController() {
+            guard let authViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthViewController") as? AuthViewController
+            else {
+                assertionFailure("Failed to show Authentication Screen")
+                return
+        }
+            authViewController.delegate = self
+            authViewController.modalPresentationStyle = .fullScreen
+            self.present(authViewController, animated: true, completion: nil)
+        }
+    
     func showLoginAlert(error: Error) {
+        print("showLoginAlert called")
         alertPresenter.showAlert(title: "Что-то пошло не так :(",
-                                 message: "Не удалось войти в систему: \(error.localizedDescription)") {
-            self.performSegue(withIdentifier: self.showAuthenticationScreenSegueIdentifier, sender: nil)
+                                 message: "Не удалось войти в систему: \(error.localizedDescription)") { [weak self] in
+            self?.presentAuthViewController()
         }
     }
 }
