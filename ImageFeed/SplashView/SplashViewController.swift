@@ -13,7 +13,8 @@ final class SplashViewController: UIViewController {
     private let showAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     private let oauth2Service = OAuth2Service()
     private let oauth2TokenStorage = OAuth2TokenStorage()
-    private let profileService = ProfileService.shared
+    private let profileServiсe = ProfileService.shared
+    private let profileImageService = ProfileImageService.shared
     private let alertPresenter = AlertPresenter()
     
     override func viewDidLoad() {
@@ -24,13 +25,7 @@ final class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard UIBlockingProgressHUD.isShowing == false else { return }
-        if let token = oauth2TokenStorage.token {
-            fetchProfile(token: token)
-            switchToTabBarController()
-        } else {
-            performSegue(withIdentifier: showAuthenticationScreenSegueIdentifier, sender: nil)
-            presentAuthViewController()
-        }
+        checkAuthTokenAndFetchProfile()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +65,7 @@ extension SplashViewController: AuthViewControllerDelegate {
             guard let self = self else { return }
             UIBlockingProgressHUD.show()
             self.fetchOAuthToken(code)
+            self.checkAuthTokenAndFetchProfile()
         }
     }
     
@@ -77,8 +73,8 @@ extension SplashViewController: AuthViewControllerDelegate {
         oauth2Service.fetchAuthToken(code) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success(let token):
-                self.fetchProfile(token: token)
+            case .success:
+                self.fetchProfile()
             case .failure(let error):
                 UIBlockingProgressHUD.dismiss()
                 self.showLoginAlert(error: error)
@@ -87,14 +83,14 @@ extension SplashViewController: AuthViewControllerDelegate {
         }
     }
     
-    private func fetchProfile(token: String) {
-        profileService.fetchProfile(token) { [weak self] result in
+    private func fetchProfile() {
+        profileServiсe.fetchProfile() { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success:
                 UIBlockingProgressHUD.dismiss()
-                guard let username = self.profileService.profile?.username else { return }
-                ProfileImageService.shared.fetchProfileImageURL(username: username) { _ in }
+                guard let username = self.profileServiсe.profile?.username else { return }
+                self.profileImageService.fetchProfileImageURL(username: username) { _ in }
                 self.switchToTabBarController()
             case .failure(let error):
                 UIBlockingProgressHUD.dismiss()
@@ -106,21 +102,29 @@ extension SplashViewController: AuthViewControllerDelegate {
     
     //    Alert
     func presentAuthViewController() {
-            guard let authViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthViewController") as? AuthViewController
-            else {
-                assertionFailure("Failed to show Authentication Screen")
-                return
-        }
-            authViewController.delegate = self
-            authViewController.modalPresentationStyle = .fullScreen
-            self.present(authViewController, animated: true, completion: nil)
-        }
+        guard let authViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AuthViewController") as? AuthViewController
+        else {
+            assertionFailure("Failed to show Authentication Screen")
+            return
+    }
+        authViewController.delegate = self
+        authViewController.modalPresentationStyle = .fullScreen
+        self.present(authViewController, animated: true, completion: nil)
+    }
     
     func showLoginAlert(error: Error) {
-        print("showLoginAlert called")
         alertPresenter.showAlert(title: "Что-то пошло не так :(",
                                  message: "Не удалось войти в систему: \(error.localizedDescription)") { [weak self] in
             self?.presentAuthViewController()
         }
     }
+    
+    func checkAuthTokenAndFetchProfile() {
+        if oauth2Service.isAuthenticated {
+            fetchProfile()
+        } else {
+            presentAuthViewController()
+        }
+    }
+    
 }

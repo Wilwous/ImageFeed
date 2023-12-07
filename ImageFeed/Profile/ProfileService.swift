@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Kingfisher
 
 final class ProfileService {
     
@@ -20,11 +21,10 @@ final class ProfileService {
     }
     
     func fetchProfile(
-        _ token: String,
         completion: @escaping (Result <Profile, Error>) -> Void
     ) {
         task?.cancel()
-        guard let request = profileRequest(token: token) else {
+        guard let request = profileRequest() else {
             assertionFailure("Invalid request")
             completion(.failure(NetworkError.invalidRequest))
             return
@@ -46,8 +46,8 @@ final class ProfileService {
     }
 }
 
-    extension ProfileService{
-    private func profileRequest(token: String) -> URLRequest? {
+extension ProfileService{
+    private func profileRequest() -> URLRequest? {
         urlRequestFactory.makeHTTPRequest(
             path: "/me",
             httpMethod: "GET"

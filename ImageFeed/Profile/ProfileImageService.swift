@@ -11,10 +11,9 @@ final class ProfileImageService {
     static let shared = ProfileImageService()
     static let didChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
     private let urlSession = URLSession.shared
+    private let urlRequestFactory: URLRequestFactory
     private(set) var avatarURL: String?
     private var task: URLSessionTask?
-
-    private let urlRequestFactory: URLRequestFactory
 
     init(urlRequestFactory: URLRequestFactory = .shared) {
         self.urlRequestFactory = urlRequestFactory

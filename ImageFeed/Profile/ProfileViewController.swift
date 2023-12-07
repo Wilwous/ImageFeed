@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
     
@@ -17,7 +18,8 @@ final class ProfileViewController: UIViewController {
     private var descriptionLabel: UILabel!
     private var logoutButton: UIButton!
     
-    private let profileService = ProfileService.shared
+    private let profileImageService = ProfileImageService.shared
+    private let profileServive = ProfileService.shared
     private var profileImageServiceObserver: NSObjectProtocol?
     
     // MARK: - View Lifecycle
@@ -27,17 +29,8 @@ final class ProfileViewController: UIViewController {
         setupUI()
         if let bearerToken = OAuth2TokenStorage.shared.token {
             updateProfileDetails(bearerToken)
-            
-            profileImageServiceObserver = NotificationCenter.default
-                .addObserver(
-                    forName: ProfileImageService.didChangeNotification,
-                    object: nil,
-                    queue: .main
-                ) { [weak self] _ in
-                    guard let self = self else { return }
-                    self.updateAvatar()
-                }
             updateAvatar()
+            profileImageObserver()
         }
     }
     
@@ -52,14 +45,6 @@ final class ProfileViewController: UIViewController {
     }
     
     // MARK: - Private Func
-    
-    private func updateAvatar() {
-        guard
-            let profileImageURL = ProfileImageService.shared.avatarURL,
-            let url = URL(string: profileImageURL)
-        else { return }
-        // TODO [Sprint 11] Обновить аватар, используя Kingfisher
-    }
     
     private func setupAvatarImageView() {
         avatarImageView = UIImageView(image: UIImage(named: "Avatar"))
@@ -148,7 +133,7 @@ final class ProfileViewController: UIViewController {
 
 extension ProfileViewController {
     private func updateProfileDetails(_ token: String) {
-        profileService.fetchProfile(token) { [weak self] result in
+        profileServive.fetchProfile() { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let profile):
@@ -159,5 +144,34 @@ extension ProfileViewController {
                 print("Failed to fetch profile: \(error)")
             }
         }
+    }
+    
+    func profileImageObserver() {
+        print("Вызываюсь")
+        profileImageServiceObserver = NotificationCenter.default
+            .addObserver(
+                forName: ProfileImageService.didChangeNotification,
+                object: nil,
+                queue: .main
+            ) { [weak self] _ in
+                guard let self = self else { return }
+                self.updateAvatar()
+            }
+    }
+    
+    func updateAvatar() {
+        guard let profileImageURL = ProfileImageService.shared.avatarURL,
+              let url = URL(string: profileImageURL)
+        else { return }
+        let processor = RoundCornerImageProcessor(cornerRadius: 70, backgroundColor: .clear)
+        avatarImageView.kf.indicatorType = .activity
+        avatarImageView.kf.setImage(
+            with: url,
+            placeholder: UIImage(named: "avatar_placeholder"),
+            options: [.processor(processor)]
+        )
+        let cache = ImageCache.default
+        cache.clearMemoryCache()
+        cache.clearDiskCache()
     }
 }
