@@ -49,6 +49,7 @@ final class ProfileViewController: UIViewController {
     private func setupAvatarImageView() {
         avatarImageView = UIImageView(image: UIImage(named: "Avatar"))
         avatarImageView.tintColor = .gray
+        avatarImageView.layer.cornerRadius = 35
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(avatarImageView)
         
