@@ -18,15 +18,6 @@ final class ImagesListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     
-    // MARK: - DateFormatter
-    
-    private lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMM yyy"
-        formatter.locale = Locale(identifier: "ru_RU")
-        return formatter
-    }()
-    
     // MARK: - TableView Configuration
     
     private func configureTableView() {

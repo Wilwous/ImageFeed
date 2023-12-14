@@ -53,4 +53,9 @@ extension ProfileService{
             httpMethod: "GET"
         )
     }
+    
+    func clean() {
+        profile = nil
+        task = nil
+    }
 }

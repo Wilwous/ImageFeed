@@ -19,10 +19,6 @@ protocol WebViewViewControllerDelegate: AnyObject{
 
 final class WebViewViewController: UIViewController {
     
-    // MARK: Constants
-    
-    let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
-    
     weak var delegate: WebViewViewControllerDelegate?
     private var estimatedProgressObservation: NSKeyValueObservation?
     
@@ -81,7 +77,7 @@ extension WebViewViewController: WKNavigationDelegate {
     // MARK: WebView Loading
     
     func loadWebView() {
-        var urlComponents = URLComponents(string: unsplashAuthorizeURLString)
+        var urlComponents = URLComponents(string: Constants.unsplashAuthorizeURLString)
         urlComponents?.queryItems = [
             URLQueryItem(name: "client_id", value: Constants.accessKey),
             URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),
