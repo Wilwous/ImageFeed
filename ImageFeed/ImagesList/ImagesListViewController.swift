@@ -105,11 +105,7 @@ extension ImagesListViewController: UITableViewDataSource {
         return imageListCell
     }
 
-    func tableView(
-        _ tableView: UITableView,
-        willDisplay cell: UITableViewCell,
-        forRowAt indexPath: IndexPath
-    ) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row + 1 == photos.count {
             imagesListService.fetchPhotoNextPage()
         }
@@ -118,8 +114,8 @@ extension ImagesListViewController: UITableViewDataSource {
     // MARK: - Configuring Cell
     
     private func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
-        let photo = photos[indexPath.row]
-        if let imageURL = URL(string: photo.thumbImageURL!) {
+        if let url = imagesListService.photos[indexPath.row].thumbImageURL,
+           let imageURL = URL(string: url) {
             cell.cellImage.kf.indicatorType = .activity
             cell.cellImage.kf.setImage(
                 with: imageURL,

@@ -32,6 +32,7 @@ final class ProfileViewController: UIViewController {
             updateAvatar()
             profileImageObserver()
         }
+        view.backgroundColor = UIColor.ypBlack
     }
     
     // MARK: - UI Setup
@@ -168,7 +169,8 @@ extension ProfileViewController {
         avatarImageView.kf.setImage(
             with: url,
             placeholder: UIImage(named: "avatar_placeholder"),
-            options: [.processor(processor)]
+            options: [.processor(processor),
+                      .cacheSerializer(FormatIndicatedCacheSerializer.png)]
         )
         let cache = ImageCache.default
         cache.clearMemoryCache()
