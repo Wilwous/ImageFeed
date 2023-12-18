@@ -15,26 +15,15 @@ final class ImagesListCell: UITableViewCell {
     
     // MARK: - IBOutlet
     
-    @IBOutlet private weak var cellImage: UIImageView!
-    @IBOutlet private weak var likeButton: UIButton!
-    @IBOutlet private weak var dateLabel: UILabel!
-}
-
-// MARK: - Public Functions
-
-extension ImagesListCell {
+    @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
     
-    func configCell(
-        image: UIImage?,
-        date: String,
-        isLiked: Bool
-    ) {
-        
-        let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
-        
-        cellImage.image = image
-        dateLabel.text = date
-        likeButton.setImage(likeImage, for: .normal)
+    // MARK: - Public Functions
+    
+    func setIsLiked(entryValue: Bool) {
+        let image = entryValue ? UIImage(named: "Like_button_active") : UIImage(named: "Like_button_inactive")
+        likeButton.setImage(image, for: .normal)
     }
 }
 

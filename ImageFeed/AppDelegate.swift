@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let sceneConfiguration = UISceneConfiguration(
                 name: "Main", sessionRole: connectingSceneSession.role)
         sceneConfiguration.delegateClass = SceneDelegate.self
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+        return sceneConfiguration
     }
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {

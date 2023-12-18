@@ -56,5 +56,4 @@ struct Photo {
         self.fullImageURL = decoded.urls?.fullImageURL
         self.isLiked = decoded.isLiked ?? false
     }
-
 }

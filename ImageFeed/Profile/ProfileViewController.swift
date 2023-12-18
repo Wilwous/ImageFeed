@@ -148,7 +148,6 @@ extension ProfileViewController {
     }
     
     func profileImageObserver() {
-        print("Вызываюсь")
         profileImageServiceObserver = NotificationCenter.default
             .addObserver(
                 forName: ProfileImageService.didChangeNotification,
