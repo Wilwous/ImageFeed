@@ -95,7 +95,9 @@ extension ImagesListViewController: UITableViewDataSource {
         guard let imageListCell = cell as? ImagesListCell else {
             return UITableViewCell()
         }
+        imageListCell.delegate = self
         configCell(for: imageListCell, with: indexPath)
+       
 
         return imageListCell
     }
@@ -114,17 +116,18 @@ extension ImagesListViewController: UITableViewDataSource {
             cell.cellImage.kf.indicatorType = .activity
             cell.cellImage.kf.setImage(
                 with: imageURL,
-                placeholder: UIImage(named: "photos_placeholder"),
-                completionHandler: { _ in
-                    self.tableView.reloadRows(at:[indexPath], with: .automatic)
+                placeholder: UIImage(named: "photos_placeholder")) { [weak self] _ in
+                    guard let self = self else { return }
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
                 }
-            )
+            if let date = imagesListService.photos[indexPath.row].createdAt {
+                cell.dateLabel.text = dateFormatter.string(from: date as Date)
+            } else {
+                cell.dateLabel.text = ""
+            }
+            let like = imagesListService.photos[indexPath.row].isLiked
+            cell.setIsLiked(entryValue: like)
         }
-        cell.dateLabel.text = dateFormatter.string(from: Date()).replacingOccurrences(of: "г.", with: "")
-
-        let isLiked = indexPath.row % 2 == 1
-        let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
-        cell.likeButton.setImage(likeImage, for: .normal)
     }
 
     // MARK: - Loading Initial Photos
@@ -166,6 +169,27 @@ extension ImagesListViewController: UITableViewDataSource {
                     tableView.deleteRows(at: indexPaths, with: .automatic)
                 }
             } completion: { _ in }
+        }
+    }
+}
+
+// MARK: - ImagesListCellDelegate
+
+extension ImagesListViewController: ImagesListCellDelegate {
+    func imageListCellDidTapLike(_ cell: ImagesListCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else {return}
+        let photo = photos[indexPath.row]
+        UIBlockingProgressHUD.showBlockingHUD()
+        imagesListService.changeLike(photoId: photo.id, isLike: !photo.isLiked) { result in
+            switch result {
+            case .success:
+                self.photos = self.imagesListService.photos
+                cell.setIsLiked(entryValue: self.photos[indexPath.row].isLiked)
+                UIBlockingProgressHUD.dismiss()
+            case .failure:
+                // TODO: Alert
+                UIBlockingProgressHUD.dismiss()
+            }
         }
     }
 }

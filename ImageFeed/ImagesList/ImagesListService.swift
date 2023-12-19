@@ -18,6 +18,7 @@ final class ImagesListService {
     private let storageToken = OAuth2TokenStorage()
     private let urlSession = URLSession.shared
     private let urlRequestFactory: URLRequestFactory
+    let dateFormater = ISO8601DateFormatter()
     
     init(urlRequestFactory: URLRequestFactory = .shared) {
         self.urlRequestFactory = urlRequestFactory
@@ -34,9 +35,10 @@ final class ImagesListService {
             guard let self = self else { return }
             
             switch result {
-            case .success(let bodies):
-                let newPhotos = bodies.map { Photo(decoded: $0) }
-                self.photos.append(contentsOf: newPhotos)
+            case .success(let photoResult):
+                for photoResult in photoResult {
+                    self.photos.append(self.decodedResult(photoResult))
+                }
                 self.lastLoadedPage = nextPage
                 self.task = nil
                 NotificationCenter.default
@@ -46,6 +48,43 @@ final class ImagesListService {
                     )
             case .failure(let error):
                 assertionFailure(error.localizedDescription)
+            }
+        }
+        self.task = task
+        task.resume()
+    }
+    
+    func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Void, Error>) -> Void) {
+        assert(Thread.isMainThread)
+        task?.cancel()
+        guard let token = storageToken.token else { return }
+        guard let request = likeRequst(token,
+                                       photoId: photoId,
+                                       httpMethod: isLike ? "DELETE" : "POST"
+        ) else { return }
+        let task = urlSession.objectTask(for: request) { [weak self] (result: Result<LikeResult, Error>) in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.task = nil
+                
+                switch result {
+                case .success(let photoResult):
+                    print("Бля я че не вызываюсь?!")
+                    if let index = self.photos.firstIndex(where: { $0.id == photoResult.photo?.id }) {
+                        let photo = self.photos[index]
+                        let newPhoto = Photo(id: photo.id,
+                                             size: photo.size,
+                                             createdAt: photo.createdAt,
+                                             description: photo.description,
+                                             thumbImageURL: photo.thumbImageURL,
+                                             fullImageURL: photo.fullImageURL,
+                                             isLiked: !photo.isLiked)
+                        self.photos = self.photos.withReplaced(itemAt: index, newValue: newPhoto)
+                    }
+                    completion(.success(()))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
         self.task = task
@@ -61,6 +100,23 @@ extension ImagesListService {
                                           httpMethod: "GET"
         )
     }
+    
+    private func likeRequst(_ token: String, photoId: String, httpMethod: String) -> URLRequest? {
+        let url = URL(string: "https://api.unsplash.com/photos/\(photoId)/like")!
+        var request = URLRequest(url: url)
+        request.httpMethod = httpMethod
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        return request
+    }
+    
+    
+    private func decodedResult(_ photoResult: PhotoResult) -> Photo {
+        return Photo.init(id: photoResult.id,
+                          size: CGSize(width: photoResult.width ?? 0, height: photoResult.height ?? 0),
+                          createdAt: dateFormater.date(from: photoResult.createdAt ?? ""),
+                          description: photoResult.description,
+                          thumbImageURL: photoResult.urls?.trumbImageURL,
+                          fullImageURL: photoResult.urls?.fullImageURL,
+                          isLiked: photoResult.isLiked ?? false)
+    }
 }
-
-

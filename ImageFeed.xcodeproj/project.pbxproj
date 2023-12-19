@@ -13,6 +13,7 @@
 		7C2D7BCB2B2249130075127C /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 7C2D7BCA2B2249130075127C /* SwiftKeychainWrapper */; };
 		7C3BC65E2B187D2200B8FE6D /* ProfileImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BC65D2B187D2200B8FE6D /* ProfileImageService.swift */; };
 		7C3BC6602B187D6C00B8FE6D /* ProfileImagesStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BC65F2B187D6C00B8FE6D /* ProfileImagesStructures.swift */; };
+		7C3BE1292B30EC42007E4C1A /* Array + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3BE1282B30EC42007E4C1A /* Array + Extension.swift */; };
 		7C3F67202B2892880089DA2A /* ImagesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F671F2B2892880089DA2A /* ImagesListService.swift */; };
 		7C3F67222B2892B30089DA2A /* ImagesListStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F67212B2892B30089DA2A /* ImagesListStructures.swift */; };
 		7C3F67252B2B5F410089DA2A /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F67242B2B5F410089DA2A /* DateFormatter.swift */; };
@@ -63,6 +64,7 @@
 		7C2D7BC42B1F7D4C0075127C /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		7C3BC65D2B187D2200B8FE6D /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
 		7C3BC65F2B187D6C00B8FE6D /* ProfileImagesStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagesStructures.swift; sourceTree = "<group>"; };
+		7C3BE1282B30EC42007E4C1A /* Array + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Extension.swift"; sourceTree = "<group>"; };
 		7C3F671F2B2892880089DA2A /* ImagesListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListService.swift; sourceTree = "<group>"; };
 		7C3F67212B2892B30089DA2A /* ImagesListStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListStructures.swift; sourceTree = "<group>"; };
 		7C3F67242B2B5F410089DA2A /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
@@ -128,7 +130,6 @@
 				7CD5C8D42AD84A8B0020C3DF /* OAuthTokenResponseBody.swift */,
 				7C8D1A262AC88A9A0059BC95 /* OAuth2Service.swift */,
 				7C8D1A282AC8937B0059BC95 /* OAuth2TokenStorage.swift */,
-				7CD5C8CB2AD581670020C3DF /* UIBlockingProgressHUD.swift */,
 			);
 			path = ServiceAccessLayer;
 			sourceTree = "<group>";
@@ -139,6 +140,8 @@
 				7C9B756B2AC5623100D7A111 /* Constants.swift */,
 				7C14783F2ABF6A5000578F52 /* UIColor.swift */,
 				7C3F67242B2B5F410089DA2A /* DateFormatter.swift */,
+				7CD5C8CB2AD581670020C3DF /* UIBlockingProgressHUD.swift */,
+				7C3BE1282B30EC42007E4C1A /* Array + Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				7CD5C8D52AD84A8B0020C3DF /* OAuthTokenResponseBody.swift in Sources */,
 				7C8D1A2D2AC9BA9A0059BC95 /* SplashViewController.swift in Sources */,
 				7C3F67202B2892880089DA2A /* ImagesListService.swift in Sources */,
+				7C3BE1292B30EC42007E4C1A /* Array + Extension.swift in Sources */,
 				7CD5C8D02AD7E4780020C3DF /* ProfileStructures.swift in Sources */,
 				7C5146562A7400D600DB47F7 /* AppDelegate.swift in Sources */,
 				7CEDF0B12AAFA5DD00ADCDDC /* SingleImageViewController.swift in Sources */,

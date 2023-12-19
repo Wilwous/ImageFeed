@@ -46,14 +46,8 @@ struct Photo {
     let thumbImageURL: String?
     let fullImageURL: String?
     let isLiked: Bool
+}
 
-    init(decoded: PhotoResult) {
-        self.id = decoded.id
-        self.size = CGSize(width: decoded.width ?? 0, height: decoded.height ?? 0)
-        self.createdAt = dateFormatter.date(from: decoded.createdAt ?? "")
-        self.description = decoded.description
-        self.thumbImageURL = decoded.urls?.trumbImageURL
-        self.fullImageURL = decoded.urls?.fullImageURL
-        self.isLiked = decoded.isLiked ?? false
-    }
+struct LikeResult: Decodable {
+    let photo: PhotoResult?
 }
