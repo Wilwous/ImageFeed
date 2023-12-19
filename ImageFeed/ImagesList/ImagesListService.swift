@@ -109,7 +109,6 @@ extension ImagesListService {
         return request
     }
     
-    
     private func decodedResult(_ photoResult: PhotoResult) -> Photo {
         return Photo.init(id: photoResult.id,
                           size: CGSize(width: photoResult.width ?? 0, height: photoResult.height ?? 0),
@@ -118,5 +117,11 @@ extension ImagesListService {
                           thumbImageURL: photoResult.urls?.trumbImageURL,
                           fullImageURL: photoResult.urls?.fullImageURL,
                           isLiked: photoResult.isLiked ?? false)
+    }
+    
+    func clean() {
+        task = nil
+        photos = []
+        lastLoadedPage = nil
     }
 }

@@ -26,6 +26,7 @@ final class SplashViewController: UIViewController {
         super.viewDidAppear(animated)
         guard UIBlockingProgressHUD.isShowing == false else { return }
         checkAuthTokenAndFetchProfile()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {

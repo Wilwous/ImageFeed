@@ -59,5 +59,10 @@ extension ProfileImageService {
             httpMethod: "GET"
         )
     }
+    
+    func clean() {
+        avatarURL = nil
+        task = nil
+    }
 }
 

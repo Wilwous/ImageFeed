@@ -51,6 +51,7 @@ final class SingleImageViewController: UIViewController {
     // MARK: - Image Scaling and Centering
     
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
+        print("Ашалеть, да ты угадал")
         let minZoomScale = scrollView.minimumZoomScale
         let maxZoomScale = scrollView.maximumZoomScale
         view.layoutIfNeeded()

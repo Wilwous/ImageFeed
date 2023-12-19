@@ -121,5 +121,14 @@ extension WebViewViewController: WKNavigationDelegate {
             decisionHandler(.allow)
         }
     }
+    
+    static func clean() {
+         HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+         WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { record in
+             record.forEach { record in
+                 WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+             }
+         }
+     }
 }
 
