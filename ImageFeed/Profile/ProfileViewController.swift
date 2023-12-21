@@ -130,73 +130,73 @@ final class ProfileViewController: UIViewController {
         showAlert()
     }
 }
-    
-    extension ProfileViewController {
-        private func updateProfileDetails(_ token: String) {
-            profileService.fetchProfile() { [weak self] result in
-                guard let self = self else { return }
-                switch result {
-                case .success(let profile):
-                    self.nameLabel.text = profile.name
-                    self.loginNameLabel.text = profile.loginName
-                    self.descriptionLabel.text = profile.bio
-                case .failure(let error):
-                    print("Failed to fetch profile: \(error)")
-                }
+
+extension ProfileViewController {
+    private func updateProfileDetails(_ token: String) {
+        profileService.fetchProfile() { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let profile):
+                self.nameLabel.text = profile.name
+                self.loginNameLabel.text = profile.loginName
+                self.descriptionLabel.text = profile.bio
+            case .failure(let error):
+                print("Failed to fetch profile: \(error)")
             }
         }
-        
-        func profileImageObserver() {
-            profileImageServiceObserver = NotificationCenter.default
-                .addObserver(
-                    forName: ProfileImageService.didChangeNotification,
-                    object: nil,
-                    queue: .main
-                ) { [weak self] _ in
-                    guard let self = self else { return }
-                    self.updateAvatar()
-                }
-        }
-        
-        func updateAvatar() {
-            guard let profileImageURL = ProfileImageService.shared.avatarURL,
-                  let url = URL(string: profileImageURL)
-            else { return }
-            let processor = RoundCornerImageProcessor(cornerRadius: 70, backgroundColor: .clear)
-            avatarImageView.kf.indicatorType = .activity
-            avatarImageView.kf.setImage(
-                with: url,
-                placeholder: UIImage(named: "avatar_placeholder"),
-                options: [.processor(processor),
-                          .cacheSerializer(FormatIndicatedCacheSerializer.png)]
-            )
-            let cache = ImageCache.default
-            cache.clearMemoryCache()
-            cache.clearDiskCache()
-        }
-        
-        private func cleanAndSwitchToSplashView() {
-            WebViewViewController.clean()
-            profileImageService.clean()
-            profileService.clean()
-            imagesListService.clean()
-            token.clean()
-            
-            guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
-            window.rootViewController = SplashViewController()
-        }
-        
-        private func showAlert() {
-            let alert = UIAlertController(
-                title: "Oй все, пока!",
-                message: "Тебе лишь бы уйти, да?!",
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: "Да", style: .default) { [weak self] alertAction in
-                guard let self = self else { return }
-                self.cleanAndSwitchToSplashView()
-            })
-            alert.addAction(UIAlertAction(title: "Нет", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
     }
+    
+    func profileImageObserver() {
+        profileImageServiceObserver = NotificationCenter.default
+            .addObserver(
+                forName: ProfileImageService.didChangeNotification,
+                object: nil,
+                queue: .main
+            ) { [weak self] _ in
+                guard let self = self else { return }
+                self.updateAvatar()
+            }
+    }
+    
+    func updateAvatar() {
+        guard let profileImageURL = ProfileImageService.shared.avatarURL,
+              let url = URL(string: profileImageURL)
+        else { return }
+        let processor = RoundCornerImageProcessor(cornerRadius: 70, backgroundColor: .clear)
+        avatarImageView.kf.indicatorType = .activity
+        avatarImageView.kf.setImage(
+            with: url,
+            placeholder: UIImage(named: "avatar_placeholder"),
+            options: [.processor(processor),
+                      .cacheSerializer(FormatIndicatedCacheSerializer.png)]
+        )
+        let cache = ImageCache.default
+        cache.clearMemoryCache()
+        cache.clearDiskCache()
+    }
+    
+    private func cleanAndSwitchToSplashView() {
+        WebViewViewController.clean()
+        profileImageService.clean()
+        profileService.clean()
+        imagesListService.clean()
+        token.clean()
+        
+        guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
+        window.rootViewController = SplashViewController()
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "Oй все, пока!",
+            message: "Тебе лишь бы уйти, да?!",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Да", style: .default) { [weak self] alertAction in
+            guard let self = self else { return }
+            self.cleanAndSwitchToSplashView()
+        })
+        alert.addAction(UIAlertAction(title: "Нет", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+}

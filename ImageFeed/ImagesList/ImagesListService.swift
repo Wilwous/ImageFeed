@@ -69,7 +69,6 @@ final class ImagesListService {
                 
                 switch result {
                 case .success(let photoResult):
-                    print("Бля я че не вызываюсь?!")
                     if let index = self.photos.firstIndex(where: { $0.id == photoResult.photo?.id }) {
                         let photo = self.photos[index]
                         let newPhoto = Photo(id: photo.id,
@@ -79,7 +78,7 @@ final class ImagesListService {
                                              thumbImageURL: photo.thumbImageURL,
                                              fullImageURL: photo.fullImageURL,
                                              isLiked: !photo.isLiked)
-                        self.photos = self.photos.withReplaced(itemAt: index, newValue: newPhoto)
+                        self.photos = self.photos.replacingElement(itemAt: index, newValue: newPhoto)
                     }
                     completion(.success(()))
                 case .failure(let error):

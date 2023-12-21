@@ -14,11 +14,11 @@ final class ProfileImageService {
     private let urlRequestFactory: URLRequestFactory
     private(set) var avatarURL: String?
     private var task: URLSessionTask?
-
+    
     init(urlRequestFactory: URLRequestFactory = .shared) {
         self.urlRequestFactory = urlRequestFactory
     }
-
+    
     func fetchProfileImageURL(
         username: String,
         completion: @escaping (Result<String,Error>) -> Void

@@ -9,7 +9,7 @@ import UIKit
 import ProgressHUD
 
 final class SplashViewController: UIViewController {
-
+    
     private let showAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     private let oauth2Service = OAuth2Service()
     private let oauth2TokenStorage = OAuth2TokenStorage()
@@ -21,19 +21,19 @@ final class SplashViewController: UIViewController {
         super.viewDidLoad()
         alertPresenter.delegate = self
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard UIBlockingProgressHUD.isShowing == false else { return }
         checkAuthTokenAndFetchProfile()
         
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
     }
-
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }
@@ -44,7 +44,7 @@ final class SplashViewController: UIViewController {
         splashImageView.contentMode = .scaleAspectFit
         return splashImageView
     }()
-
+    
     private func switchToTabBarController() {
         guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
         let tabBarController = UIStoryboard(name: "Main", bundle: .main)
@@ -100,7 +100,7 @@ extension SplashViewController: AuthViewControllerDelegate {
         else {
             assertionFailure("Failed to show Authentication Screen")
             return
-    }
+        }
         authViewController.delegate = self
         authViewController.modalPresentationStyle = .fullScreen
         self.present(authViewController, animated: true, completion: nil)

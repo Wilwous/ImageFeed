@@ -11,7 +11,7 @@ import Kingfisher
 final class SingleImageViewController: UIViewController {
     
     // MARK: - Properties
-
+    
     var imageURL: URL?
     
     // MARK: - IBOutlets
@@ -23,16 +23,10 @@ final class SingleImageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
         setImage()
     }
     
     // MARK: - Setup
-    
-    private func setupUI() {
-        scrollView.minimumZoomScale = 0.1
-        scrollView.maximumZoomScale = 1.25
-    }
     
     private func setImage() {
         UIBlockingProgressHUD.show()
@@ -48,10 +42,10 @@ final class SingleImageViewController: UIViewController {
         }
     }
     
+    
     // MARK: - Image Scaling and Centering
     
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
-        print("Ашалеть, да ты угадал")
         let minZoomScale = scrollView.minimumZoomScale
         let maxZoomScale = scrollView.maximumZoomScale
         view.layoutIfNeeded()
@@ -66,6 +60,8 @@ final class SingleImageViewController: UIViewController {
         let x = (newContentSize.width - visibleRectSize.width) / 2
         let y = (newContentSize.height - visibleRectSize.height) / 2
         scrollView.setContentOffset(CGPoint(x: x, y: y), animated: false)
+        scrollView.minimumZoomScale = 0.1
+        scrollView.maximumZoomScale = 1.25
     }
     
     // MARK: - Button Actions
