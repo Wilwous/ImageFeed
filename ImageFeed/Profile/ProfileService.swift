@@ -14,11 +14,9 @@ final class ProfileService {
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?
     private (set) var profile: Profile?
-    private let urlRequestFactory: URLRequestFactory
+    private let urlRequestFactory = URLRequestFactory.shared
     
-    init(urlRequestFactory: URLRequestFactory = .shared) {
-        self.urlRequestFactory = urlRequestFactory
-    }
+    private init() {}
     
     func fetchProfile(
         completion: @escaping (Result <Profile, Error>) -> Void
