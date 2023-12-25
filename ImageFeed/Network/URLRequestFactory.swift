@@ -19,7 +19,7 @@ final class URLRequestFactory {
     func makeHTTPRequest(
         path: String,
         httpMethod: String,
-        baseURLString: String = Constants.defaultApiBaseURLString
+        baseURLString: String = AuthConfiguration.standard.defaultApiBaseURLString
     ) -> URLRequest? {
         guard
             let url = URL(string: baseURLString),
