@@ -22,7 +22,7 @@ final class ProfileViewController: UIViewController {
     private let profileImageService = ProfileImageService.shared
     private let profileService = ProfileService.shared
     private var profileImageServiceObserver: NSObjectProtocol?
-    private let token = OAuth2TokenStorage()
+    private let token = OAuth2TokenStorage.shared
     
     // MARK: - View Lifecycle
     

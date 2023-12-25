@@ -15,7 +15,7 @@ final class ImagesListService {
     private(set) var photos: [Photo] = []
     private var lastLoadedPage: Int?
     private var task: URLSessionTask?
-    private let storageToken = OAuth2TokenStorage()
+    private let storageToken = OAuth2TokenStorage.shared
     private let urlSession = URLSession.shared
     private let urlRequestFactory = URLRequestFactory.shared
     let dateFormater = ISO8601DateFormatter()
