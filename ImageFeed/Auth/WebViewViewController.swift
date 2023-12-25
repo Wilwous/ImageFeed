@@ -41,7 +41,7 @@ final class WebViewViewController: UIViewController & WebViewViewControllerProto
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.navigationDelegate = self
-        presenter?.viewDidLoad()
+        presenter?.autorizeInUnsplash()
         estimatedProgressObservation = webView.observe(
             \.estimatedProgress,
              options: [],
@@ -50,19 +50,6 @@ final class WebViewViewController: UIViewController & WebViewViewControllerProto
                  self.presenter?.didUpdateProgressValue(webView.estimatedProgress)
              }
         )
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == #keyPath(WKWebView.estimatedProgress) {
-            presenter?.didUpdateProgressValue(webView.estimatedProgress)
-        } else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
     }
     
     func load(request: URLRequest) {

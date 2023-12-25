@@ -10,6 +10,7 @@ import Foundation
 protocol WebViewPresenterProtocol {
     var view: WebViewViewControllerProtocol? { get set }
     func viewDidLoad()
+    func autorizeInUnsplash()
     func didUpdateProgressValue(_ newValue: Double)
     func code(from url: URL) -> String?
 }
@@ -27,6 +28,12 @@ final class WebViewPresenter: WebViewPresenterProtocol {
     
     init(authHelper: AuthHelperProtocol) {
         self.authHelper = authHelper
+    }
+    
+    func autorizeInUnsplash() {
+        let request = authHelper.authRequest()
+        view?.load(request: request)
+        didUpdateProgressValue(0)
     }
     
     func didUpdateProgressValue(_ newValue: Double) {
