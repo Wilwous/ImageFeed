@@ -20,7 +20,7 @@ final class ImagesListService {
     private let urlRequestFactory = URLRequestFactory.shared
     let dateFormater = ISO8601DateFormatter()
     
-    private init() {}
+    init() {}
     
     func fetchPhotoNextPage() {
         task?.cancel()

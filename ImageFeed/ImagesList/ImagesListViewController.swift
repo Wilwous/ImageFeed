@@ -31,7 +31,7 @@ final class ImagesListViewController: UIViewController, ImageListViewControllerP
     // MARK: - TableView Configuration
     
     private func configureTableView() {
-        tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
+        tableView?.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
     }
     
     // MARK: - Lifecycle
