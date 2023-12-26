@@ -13,6 +13,7 @@
 		7C1789B32B3AC54500BB0F8F /* WebViewPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1789B22B3AC54500BB0F8F /* WebViewPresenterSpy.swift */; };
 		7C1789B42B3ACF4700BB0F8F /* WebViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1789AB2B3AC3C000BB0F8F /* WebViewTests.swift */; };
 		7C1789B62B3ACFD000BB0F8F /* WebViewViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1789B52B3ACFD000BB0F8F /* WebViewViewControllerSpy.swift */; };
+		7C1789B82B3AD37C00BB0F8F /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1789B72B3AD37C00BB0F8F /* ProfilePresenter.swift */; };
 		7C2127422B35F0EE00274665 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2127412B35F0EE00274665 /* NetworkError.swift */; };
 		7C2D7BC52B1F7D4C0075127C /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D7BC42B1F7D4C0075127C /* AlertPresenter.swift */; };
 		7C2D7BC82B21D3F20075127C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7C2D7BC72B21D3F20075127C /* Kingfisher */; };
@@ -65,6 +66,7 @@
 		7C1789AB2B3AC3C000BB0F8F /* WebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewTests.swift; sourceTree = "<group>"; };
 		7C1789B22B3AC54500BB0F8F /* WebViewPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenterSpy.swift; sourceTree = "<group>"; };
 		7C1789B52B3ACFD000BB0F8F /* WebViewViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewControllerSpy.swift; sourceTree = "<group>"; };
+		7C1789B72B3AD37C00BB0F8F /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		7C2127412B35F0EE00274665 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		7C2D7BC42B1F7D4C0075127C /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		7C3BC65D2B187D2200B8FE6D /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
@@ -253,10 +255,11 @@
 		7CEDF0AC2AAF8C1E00ADCDDC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				7C1789B72B3AD37C00BB0F8F /* ProfilePresenter.swift */,
 				7CEDF0AD2AAF8D2000ADCDDC /* ProfileViewController.swift */,
 				7CD5C8CD2AD589020020C3DF /* ProfileService.swift */,
-				7CD5C8CF2AD7E4780020C3DF /* ProfileStructures.swift */,
 				7C3BC65D2B187D2200B8FE6D /* ProfileImageService.swift */,
+				7CD5C8CF2AD7E4780020C3DF /* ProfileStructures.swift */,
 				7C3BC65F2B187D6C00B8FE6D /* ProfileImagesStructures.swift */,
 			);
 			path = Profile;
@@ -386,6 +389,7 @@
 				7C2127422B35F0EE00274665 /* NetworkError.swift in Sources */,
 				7C2D7BC52B1F7D4C0075127C /* AlertPresenter.swift in Sources */,
 				7C51465A2A7400D600DB47F7 /* ImagesListViewController.swift in Sources */,
+				7C1789B82B3AD37C00BB0F8F /* ProfilePresenter.swift in Sources */,
 				7C8D1A272AC88A9A0059BC95 /* OAuth2Service.swift in Sources */,
 				7C3F67252B2B5F410089DA2A /* DateFormatter.swift in Sources */,
 				7C3BC6602B187D6C00B8FE6D /* ProfileImagesStructures.swift in Sources */,
