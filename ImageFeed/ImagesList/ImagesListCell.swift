@@ -10,7 +10,7 @@ import UIKit
 // MARK: - ImagesListCellDelegate
 
 protocol ImagesListCellDelegate: AnyObject {
-    func imageListCellDidTapLike(_ cell: ImagesListCell)
+    func imagesListCellDidTapLike(_ cell: ImagesListCell)
 }
 
 final class ImagesListCell: UITableViewCell {
@@ -37,7 +37,7 @@ final class ImagesListCell: UITableViewCell {
     // MARK: - Button Actions
     
     @IBAction private func likeButtonClicked(_ sender: Any) {
-        delegate?.imageListCellDidTapLike(self)
+        delegate?.imagesListCellDidTapLike(self)
         feedbackGenerator.notificationOccurred(.success)
     }
 }
