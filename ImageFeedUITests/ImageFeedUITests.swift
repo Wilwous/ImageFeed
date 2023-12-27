@@ -11,10 +11,10 @@ final class ImageFeedUITests: XCTestCase {
     
     private let app = XCUIApplication()
     
-    let login = "hesher.tm@gmail.com"
-    let password = "HESHERahamo2012"
-    let username = "Anton Pavlov"
-    let nickname = "@wilwous"
+    let login = ""
+    let password = ""
+    let username = ""
+    let nickname = ""
     
     override func setUpWithError() throws {
         continueAfterFailure = false
