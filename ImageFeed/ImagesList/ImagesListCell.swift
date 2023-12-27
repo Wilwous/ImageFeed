@@ -7,25 +7,51 @@
 
 import UIKit
 
+// MARK: - ImagesListCellDelegate
+
+protocol ImagesListCellDelegate: AnyObject {
+    func imagesListCellDidTapLike(_ cell: ImagesListCell)
+}
+
 final class ImagesListCell: UITableViewCell {
     
+    // MARK: - Constants
+    
     static let reuseIdentifier = "ImagesListCell"
+    private let feedbackGenerator = UINotificationFeedbackGenerator()
+    weak var delegate: ImagesListCellDelegate?
     
     // MARK: - IBOutlet
     
-    @IBOutlet private var cellImage: UIImageView!
-    @IBOutlet private weak var likeButton: UIButton!
-    @IBOutlet private weak var dateLabel: UILabel!
-}
-
-extension ImagesListCell {
+    @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
     
-    func configCell(image: UIImage?, date: String, isLiked : Bool) {
-        
-        let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
-        
-        cellImage.image = image
-        dateLabel.text = date
-        likeButton.setImage(likeImage, for: .normal)
+    // MARK: - Public Functions
+    
+    func setIsLiked(entryValue: Bool) {
+        let image = entryValue ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
+        likeButton.setImage(image, for: .normal)
+    }
+    
+    // MARK: - Button Actions
+    
+    @IBAction private func likeButtonClicked(_ sender: Any) {
+        UIView.animateKeyframes(withDuration: 1, delay: 0, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.4, animations: {
+                self.likeButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            })
+            UIView.addKeyframe(withRelativeStartTime: 0.4, relativeDuration: 0.1, animations: {
+                self.likeButton.transform = .identity
+            })
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.4, animations: {
+                self.likeButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            })
+            UIView.addKeyframe(withRelativeStartTime: 0.9, relativeDuration: 0.1, animations: {
+                self.likeButton.transform = .identity
+            })
+        })
+        delegate?.imagesListCellDidTapLike(self)
+        feedbackGenerator.notificationOccurred(.success)
     }
 }
