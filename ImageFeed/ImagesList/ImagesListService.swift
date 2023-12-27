@@ -41,9 +41,7 @@ final class ImagesListService {
                 self.task = nil
                 NotificationCenter.default.post(name: ImagesListService.didChangeNotification, object: self)
             case .failure(let error):
-                print("Error fetching photos: \(error.localizedDescription)")
                 if let networkError = error as? NetworkError {
-                    print("Network Error: \(networkError)")
                 }
                 self.handleNetworkError(error)
             }

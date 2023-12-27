@@ -59,7 +59,7 @@ final class ProfileViewPresenter: ProfileViewPresenterProtocol {
     }
     
     func cleanAndSwitchToSplashView() {
-        WebViewViewController.clean()
+        WebViewPresenter.clean()
         profileImageService.clean()
         profileService.clean()
         imagesListService.clean()
