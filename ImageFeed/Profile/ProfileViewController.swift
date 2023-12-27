@@ -112,6 +112,7 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         logoutButton.tintColor = .ypRed
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         logoutButton.setImage(UIImage(systemName: "ipad.and.arrow.forward"), for: .normal)
+        logoutButton.accessibilityIdentifier = "logoutButton"
         view.addSubview(logoutButton)
         
         NSLayoutConstraint.activate([
