@@ -7,34 +7,37 @@
 
 import UIKit
 
+// MARK: - ImagesListCellDelegate
+
+protocol ImagesListCellDelegate: AnyObject {
+    func imageListCellDidTapLike(_ cell: ImagesListCell)
+}
+
 final class ImagesListCell: UITableViewCell {
     
     // MARK: - Constants
     
     static let reuseIdentifier = "ImagesListCell"
+    private let feedbackGenerator = UINotificationFeedbackGenerator()
+    weak var delegate: ImagesListCellDelegate?
     
     // MARK: - IBOutlet
     
-    @IBOutlet private weak var cellImage: UIImageView!
-    @IBOutlet private weak var likeButton: UIButton!
-    @IBOutlet private weak var dateLabel: UILabel!
-}
-
-// MARK: - Public Functions
-
-extension ImagesListCell {
+    @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
     
-    func configCell(
-        image: UIImage?,
-        date: String,
-        isLiked: Bool
-    ) {
-        
-        let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
-        
-        cellImage.image = image
-        dateLabel.text = date
-        likeButton.setImage(likeImage, for: .normal)
+    // MARK: - Public Functions
+    
+    func setIsLiked(entryValue: Bool) {
+        let image = entryValue ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
+        likeButton.setImage(image, for: .normal)
+    }
+    
+    // MARK: - Button Actions
+    
+    @IBAction private func likeButtonClicked(_ sender: Any) {
+        delegate?.imageListCellDidTapLike(self)
+        feedbackGenerator.notificationOccurred(.success)
     }
 }
-

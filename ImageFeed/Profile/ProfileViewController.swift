@@ -18,9 +18,11 @@ final class ProfileViewController: UIViewController {
     private var descriptionLabel: UILabel!
     private var logoutButton: UIButton!
     
+    private let imagesListService = ImagesListService.shared
     private let profileImageService = ProfileImageService.shared
-    private let profileServive = ProfileService.shared
+    private let profileService = ProfileService.shared
     private var profileImageServiceObserver: NSObjectProtocol?
+    private let token = OAuth2TokenStorage.shared
     
     // MARK: - View Lifecycle
     
@@ -32,6 +34,7 @@ final class ProfileViewController: UIViewController {
             updateAvatar()
             profileImageObserver()
         }
+        view.backgroundColor = UIColor.ypBlack
     }
     
     // MARK: - UI Setup
@@ -124,17 +127,13 @@ final class ProfileViewController: UIViewController {
     
     @objc
     private func logoutButtonTapped() {
-        avatarImageView.removeFromSuperview()
-        loginNameLabel.removeFromSuperview()
-        loginNameLabel.removeFromSuperview()
-        descriptionLabel.removeFromSuperview()
-        logoutButton.removeFromSuperview()
+        showAlert()
     }
 }
 
 extension ProfileViewController {
     private func updateProfileDetails(_ token: String) {
-        profileServive.fetchProfile() { [weak self] result in
+        profileService.fetchProfile() { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let profile):
@@ -148,7 +147,6 @@ extension ProfileViewController {
     }
     
     func profileImageObserver() {
-        print("Вызываюсь")
         profileImageServiceObserver = NotificationCenter.default
             .addObserver(
                 forName: ProfileImageService.didChangeNotification,
@@ -169,10 +167,36 @@ extension ProfileViewController {
         avatarImageView.kf.setImage(
             with: url,
             placeholder: UIImage(named: "avatar_placeholder"),
-            options: [.processor(processor)]
+            options: [.processor(processor),
+                      .cacheSerializer(FormatIndicatedCacheSerializer.png)]
         )
         let cache = ImageCache.default
         cache.clearMemoryCache()
         cache.clearDiskCache()
+    }
+    
+    private func cleanAndSwitchToSplashView() {
+        WebViewViewController.clean()
+        profileImageService.clean()
+        profileService.clean()
+        imagesListService.clean()
+        token.clean()
+        
+        guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
+        window.rootViewController = SplashViewController()
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "Oй все, пока!",
+            message: "Тебе лишь бы уйти, да?!",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Да", style: .default) { [weak self] alertAction in
+            guard let self = self else { return }
+            self.cleanAndSwitchToSplashView()
+        })
+        alert.addAction(UIAlertAction(title: "Нет", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }

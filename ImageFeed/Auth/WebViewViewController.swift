@@ -19,10 +19,6 @@ protocol WebViewViewControllerDelegate: AnyObject{
 
 final class WebViewViewController: UIViewController {
     
-    // MARK: Constants
-    
-    let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
-    
     weak var delegate: WebViewViewControllerDelegate?
     private var estimatedProgressObservation: NSKeyValueObservation?
     
@@ -42,11 +38,11 @@ final class WebViewViewController: UIViewController {
         
         estimatedProgressObservation = webView.observe(
             \.estimatedProgress,
-            options: [],
-            changeHandler: { [weak self] _, _ in
-                guard let self = self else { return }
-                self.updateProgress()
-            })
+             options: [],
+             changeHandler: { [weak self] _, _ in
+                 guard let self = self else { return }
+                 self.updateProgress()
+             })
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,7 +77,7 @@ extension WebViewViewController: WKNavigationDelegate {
     // MARK: WebView Loading
     
     func loadWebView() {
-        var urlComponents = URLComponents(string: unsplashAuthorizeURLString)
+        var urlComponents = URLComponents(string: Constants.unsplashAuthorizeURLString)
         urlComponents?.queryItems = [
             URLQueryItem(name: "client_id", value: Constants.accessKey),
             URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),
@@ -123,6 +119,15 @@ extension WebViewViewController: WKNavigationDelegate {
             decisionHandler(.cancel)
         } else {
             decisionHandler(.allow)
+        }
+    }
+    
+    static func clean() {
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { record in
+            record.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+            }
         }
     }
 }

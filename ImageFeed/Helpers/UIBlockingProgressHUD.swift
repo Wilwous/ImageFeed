@@ -24,5 +24,11 @@ final class UIBlockingProgressHUD {
         window?.isUserInteractionEnabled = true
         ProgressHUD.dismiss()
     }
+    
+    static func showBlockingHUD() {
+        window?.isUserInteractionEnabled = false
+        ProgressHUD.animationType = .circleStrokeSpin
+        ProgressHUD.show()
+    }
 }
 

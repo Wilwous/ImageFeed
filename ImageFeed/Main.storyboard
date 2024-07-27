@@ -42,9 +42,12 @@
                                                     <rect key="frame" x="317" y="4" width="42" height="42"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="like_button_on"/>
+                                                    <connections>
+                                                        <action selector="likeButtonClicked:" destination="NMX-33-Uab" eventType="touchUpInside" id="iV8-Lw-5a0"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 июня 1995" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6V-h3-ufj" userLabel="Date Label">
-                                                    <rect key="frame" x="32" y="196.33333333333334" width="86" height="15.666666666666657"/>
+                                                    <rect key="frame" x="32" y="196" width="86" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" name="YP White"/>
                                                     <nil key="highlightedColor"/>
@@ -126,18 +129,14 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axa-x6-1f8">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="3DQ-uW-p3B" userLabel="Image View">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="414" image="photos_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="3DQ-uW-p3B" userLabel="Image View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="414" id="egV-LY-RmW"/>
-                                            <constraint firstAttribute="height" constant="414" id="qW4-rE-QYZ"/>
-                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="3DQ-uW-p3B" secondAttribute="trailing" id="HGK-CO-QuC"/>
                                     <constraint firstItem="3DQ-uW-p3B" firstAttribute="top" secondItem="axa-x6-1f8" secondAttribute="top" id="IL0-Ih-y2B"/>
                                     <constraint firstItem="3DQ-uW-p3B" firstAttribute="leading" secondItem="axa-x6-1f8" secondAttribute="leading" id="Zhg-5O-yr8"/>
-                                    <constraint firstAttribute="trailing" secondItem="3DQ-uW-p3B" secondAttribute="trailing" id="e2t-as-wHx"/>
                                     <constraint firstAttribute="bottom" secondItem="3DQ-uW-p3B" secondAttribute="bottom" id="of0-BA-bFb"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Ss2-bE-Qpi"/>
@@ -159,9 +158,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y0V-s1-tEv" userLabel="Share Button">
-                                <rect key="frame" x="162.66666666666666" y="726" width="50" height="50"/>
+                                <rect key="frame" x="162.66666666666666" y="711" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="7d5-DH-d8L"/>
                                     <constraint firstAttribute="width" constant="50" id="tZT-17-AQM"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -174,12 +172,12 @@
                         <viewLayoutGuide key="safeArea" id="TmH-6e-uRh"/>
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
-                            <constraint firstItem="y0V-s1-tEv" firstAttribute="centerX" secondItem="5Tj-Bu-Xcj" secondAttribute="centerX" id="6Ck-L1-pO6"/>
+                            <constraint firstItem="y0V-s1-tEv" firstAttribute="centerX" secondItem="TmH-6e-uRh" secondAttribute="centerX" id="6Ck-L1-pO6"/>
                             <constraint firstItem="axa-x6-1f8" firstAttribute="top" secondItem="5Tj-Bu-Xcj" secondAttribute="top" id="7T8-Yl-SqZ"/>
                             <constraint firstItem="TmH-6e-uRh" firstAttribute="trailing" secondItem="axa-x6-1f8" secondAttribute="trailing" id="Ck4-Ei-e7p"/>
                             <constraint firstItem="9nM-0h-Pnf" firstAttribute="left" secondItem="TmH-6e-uRh" secondAttribute="left" constant="8" id="GkQ-4l-wXC"/>
                             <constraint firstItem="9nM-0h-Pnf" firstAttribute="top" secondItem="TmH-6e-uRh" secondAttribute="top" constant="8" id="Nay-gG-9fP"/>
-                            <constraint firstItem="TmH-6e-uRh" firstAttribute="bottom" secondItem="y0V-s1-tEv" secondAttribute="bottom" constant="36" id="RaZ-Ak-iZB"/>
+                            <constraint firstItem="TmH-6e-uRh" firstAttribute="bottom" secondItem="y0V-s1-tEv" secondAttribute="bottom" constant="51" id="RaZ-Ak-iZB"/>
                             <constraint firstAttribute="bottom" secondItem="axa-x6-1f8" secondAttribute="bottom" id="Z5t-31-G7m"/>
                             <constraint firstItem="axa-x6-1f8" firstAttribute="leading" secondItem="TmH-6e-uRh" secondAttribute="leading" id="pfv-se-kJr"/>
                         </constraints>
@@ -336,6 +334,7 @@
         <image name="auth_screen_logo" width="60" height="60"/>
         <image name="like_button_on" width="42" height="42"/>
         <image name="nav_back_button" width="24" height="24"/>
+        <image name="photos_placeholder" width="288" height="212"/>
         <image name="tab_editorial_active" width="30" height="30"/>
         <namedColor name="YP Black">
             <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

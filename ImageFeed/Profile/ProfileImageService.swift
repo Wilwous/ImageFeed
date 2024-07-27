@@ -11,14 +11,12 @@ final class ProfileImageService {
     static let shared = ProfileImageService()
     static let didChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
     private let urlSession = URLSession.shared
-    private let urlRequestFactory: URLRequestFactory
+    private let urlRequestFactory = URLRequestFactory.shared
     private(set) var avatarURL: String?
     private var task: URLSessionTask?
-
-    init(urlRequestFactory: URLRequestFactory = .shared) {
-        self.urlRequestFactory = urlRequestFactory
-    }
-
+    
+    private init() {}
+    
     func fetchProfileImageURL(
         username: String,
         completion: @escaping (Result<String,Error>) -> Void
@@ -34,13 +32,13 @@ final class ProfileImageService {
             guard let self = self else { return }
             switch result {
             case .success(let profilPhoto):
-                guard let ProfileImageURL = profilPhoto.profileImage?.large else { return }
-                self.avatarURL = ProfileImageURL
-                completion(.success(ProfileImageURL))
+                guard let profileImageURL = profilPhoto.profileImage?.large else { return }
+                self.avatarURL = profileImageURL
+                completion(.success(profileImageURL))
                 NotificationCenter.default.post(
                     name: ProfileImageService.didChangeNotification,
                     object: self,
-                    userInfo: ["URL": ProfileImageURL]
+                    userInfo: nil
                 )
                 self.task = nil
             case .failure(let error):
@@ -58,6 +56,11 @@ extension ProfileImageService {
             path: "/users/\(username)",
             httpMethod: "GET"
         )
+    }
+    
+    func clean() {
+        avatarURL = nil
+        task = nil
     }
 }
 
