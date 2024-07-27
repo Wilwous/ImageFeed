@@ -20,7 +20,7 @@ final class ImagesListService {
     private let urlRequestFactory = URLRequestFactory.shared
     let dateFormater = ISO8601DateFormatter()
     
-    private init() {}
+    init() {}
     
     func fetchPhotoNextPage() {
         task?.cancel()
@@ -29,27 +29,42 @@ final class ImagesListService {
             assertionFailure("\(NetworkError.invalidRequest)")
             return
         }
-        let task = urlSession.objectTask(for: request) { [weak self] (result: Result<[PhotoResult], Error>) in
+        self.task = urlSession.objectTask(for: request) { [weak self] (result: Result<[PhotoResult], Error>) in
             guard let self = self else { return }
             
             switch result {
-            case .success(let photoResult):
-                for photoResult in photoResult {
+            case .success(let photoResults):
+                for photoResult in photoResults {
                     self.photos.append(self.decodedResult(photoResult))
                 }
                 self.lastLoadedPage = nextPage
                 self.task = nil
-                NotificationCenter.default
-                    .post(
-                        name: ImagesListService.didChangeNotification,
-                        object: self
-                    )
+                NotificationCenter.default.post(name: ImagesListService.didChangeNotification, object: self)
             case .failure(let error):
-                assertionFailure(error.localizedDescription)
+                if let networkError = error as? NetworkError {
+                }
+                self.handleNetworkError(error)
             }
         }
-        self.task = task
-        task.resume()
+        self.task?.resume()
+    }
+    
+    private func handleNetworkError(_ error: Error) {
+        switch error {
+        case let networkError as NetworkError:
+            switch networkError {
+            case .httpStatusCode(let statusCode):
+                print("HTTP Status Code: \(statusCode)")
+            case .urlRequestError(let requestError):
+                print("URL Request Error: \(requestError.localizedDescription)")
+            case .urlSessionError:
+                print("URL Session Error")
+            case .invalidRequest:
+                print("Invalid Request")
+            }
+        default:
+            print("Unexpected Error: \(error.localizedDescription)")
+        }
     }
     
     func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Void, Error>) -> Void) {
